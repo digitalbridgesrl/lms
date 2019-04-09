@@ -28,7 +28,7 @@ header('location:manage-books.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | Manage Issued Books</title>
+    <title>Online Library Management System | Gestione Libri Emessi</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -49,7 +49,7 @@ header('location:manage-books.php');
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Issued Books</h4>
+                <h4 class="header-line">Gestione Libri Emessi</h4>
     </div>
     
 
@@ -58,7 +58,7 @@ header('location:manage-books.php');
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          Issued Books 
+                          Libri Emessi
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -66,11 +66,11 @@ header('location:manage-books.php');
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Book Name</th>
-                                            <th>ISBN </th>
-                                            <th>Issued Date</th>
-                                            <th>Return Date</th>
-                                            <th>Fine in(USD)</th>
+                                            <th>Titolo</th>
+                                            <th>ISBN</th>
+                                            <th>Data Emissione</th>
+                                            <th>Data Restituzione</th>
+                                            <th>Tariffa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -94,7 +94,7 @@ foreach($results as $result)
                                             <td class="center"><?php if($result->ReturnDate=="")
                                             {?>
                                             <span style="color:red">
-                                             <?php   echo htmlentities("Not Return Yet"); ?>
+                                             <?php   echo htmlentities("Non ancora restituito"); ?>
                                                 </span>
                                             <?php } else {
                                             echo htmlentities($result->ReturnDate);

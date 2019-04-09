@@ -35,7 +35,7 @@ echo '<script>alert("Your profile has been updated")</script>';
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Online Library Management System | Student Signup</title>
+    <title>Online Library Management System | Registrazione Studente</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -54,7 +54,7 @@ echo '<script>alert("Your profile has been updated")</script>';
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">My Profile</h4>
+                <h4 class="header-line">Il Mio Profilo</h4>
                 
                             </div>
 
@@ -64,7 +64,7 @@ echo '<script>alert("Your profile has been updated")</script>';
 <div class="col-md-9 col-md-offset-1">
                <div class="panel panel-danger">
                         <div class="panel-heading">
-                           My Profile
+                           Il Mio Profilo
                         </div>
                         <div class="panel-body">
                             <form name="signup" method="post">
@@ -82,45 +82,45 @@ foreach($results as $result)
 {               ?>  
 
 <div class="form-group">
-<label>Student ID : </label>
+<label>ID Studente: </label>
 <?php echo htmlentities($result->StudentId);?>
 </div>
 
 <div class="form-group">
-<label>Reg Date : </label>
+<label>Data Registrazione: </label>
 <?php echo htmlentities($result->RegDate);?>
 </div>
 <?php if($result->UpdationDate!=""){?>
 <div class="form-group">
-<label>Last Updation Date : </label>
+<label>Data Ultimo Aggiornamento: </label>
 <?php echo htmlentities($result->UpdationDate);?>
 </div>
 <?php } ?>
 
 
 <div class="form-group">
-<label>Profile Status : </label>
+<label>Stato: </label>
 <?php if($result->Status==1){?>
-<span style="color: green">Active</span>
+<span style="color: green">Attivo</span>
 <?php } else { ?>
-<span style="color: red">Blocked</span>
+<span style="color: red">Bloccato</span>
 <?php }?>
 </div>
 
 
 <div class="form-group">
-<label>Enter Full Name</label>
+<label>Cognome e Nome: </label>
 <input class="form-control" type="text" name="fullanme" value="<?php echo htmlentities($result->FullName);?>" autocomplete="off" required />
 </div>
 
 
 <div class="form-group">
-<label>Mobile Number :</label>
+<label>Cellulare: </label>
 <input class="form-control" type="text" name="mobileno" maxlength="10" value="<?php echo htmlentities($result->MobileNumber);?>" autocomplete="off" required />
 </div>
                                         
 <div class="form-group">
-<label>Enter Email</label>
+<label>Email: </label>
 <input class="form-control" type="email" name="email" id="emailid" value="<?php echo htmlentities($result->EmailId);?>"  autocomplete="off" required readonly />
 </div>
 <?php }} ?>

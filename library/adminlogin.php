@@ -9,7 +9,7 @@ if(isset($_POST['login']))
 {
  //code for captach verification
 if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
-        echo "<script>alert('Incorrect verification code');</script>" ;
+        echo "<script>alert('Codice di verifica non corretto');</script>" ;
     } 
         else {
 
@@ -26,7 +26,7 @@ if($query->rowCount() > 0)
 $_SESSION['alogin']=$_POST['username'];
 echo "<script type='text/javascript'> document.location ='admin/dashboard.php'; </script>";
 } else{
-echo "<script>alert('Invalid Details');</script>";
+echo "<script>alert('Dati non corretti');</script>";
 }
 }
 }
@@ -57,7 +57,7 @@ echo "<script>alert('Invalid Details');</script>";
 <div class="container">
 <div class="row pad-botm">
 <div class="col-md-12">
-<h4 class="header-line">ADMIN LOGIN FORM</h4>
+<h4 class="header-line">ACCESSO AMMINISTRATORE</h4>
 </div>
 </div>
              
@@ -66,13 +66,13 @@ echo "<script>alert('Invalid Details');</script>";
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
 <div class="panel panel-info">
 <div class="panel-heading">
- LOGIN FORM
+ FORM DI ACCESSO
 </div>
 <div class="panel-body">
 <form role="form" method="post">
 
 <div class="form-group">
-<label>Enter Username</label>
+<label>Username</label>
 <input class="form-control" type="text" name="username" autocomplete="off" required />
 </div>
 <div class="form-group">
@@ -80,11 +80,11 @@ echo "<script>alert('Invalid Details');</script>";
 <input class="form-control" type="password" name="password" autocomplete="off" required />
 </div>
  <div class="form-group">
-<label>Verification code : </label>
+<label>Codice di verifica: </label>
 <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
 </div>  
 
- <button type="submit" name="login" class="btn btn-info">LOGIN </button>
+ <button type="submit" name="login" class="btn btn-info">ACCEDI</button>
 </form>
  </div>
 </div>

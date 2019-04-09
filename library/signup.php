@@ -54,7 +54,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Online Library Management System | Student Signup</title>
+    <title>Online Library Management System | Registrazione Studente</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -100,7 +100,7 @@ error:function (){}
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">User Signup</h4>
+                <h4 class="header-line">Registrazione Studente</h4>
                 
                             </div>
 
@@ -110,41 +110,41 @@ error:function (){}
 <div class="col-md-9 col-md-offset-1">
                <div class="panel panel-danger">
                         <div class="panel-heading">
-                           SINGUP FORM
+                           FORM DI REGISTRAZIONE
                         </div>
                         <div class="panel-body">
                             <form name="signup" method="post" onSubmit="return valid();">
 <div class="form-group">
-<label>Enter Full Name</label>
+<label>Cognome e Nome: </label>
 <input class="form-control" type="text" name="fullanme" autocomplete="off" required />
 </div>
 
 
 <div class="form-group">
-<label>Mobile Number :</label>
+<label>Cellulare: </label>
 <input class="form-control" type="text" name="mobileno" maxlength="10" autocomplete="off" required />
 </div>
                                         
 <div class="form-group">
-<label>Enter Email</label>
+<label>Email: </label>
 <input class="form-control" type="email" name="email" id="emailid" onBlur="checkAvailability()"  autocomplete="off" required  />
    <span id="user-availability-status" style="font-size:12px;"></span> 
 </div>
 
 <div class="form-group">
-<label>Enter Password</label>
+<label>Password: </label>
 <input class="form-control" type="password" name="password" autocomplete="off" required  />
 </div>
 
 <div class="form-group">
-<label>Confirm Password </label>
+<label>Conferma Password: </label>
 <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
 </div>
  <div class="form-group">
-<label>Verification code : </label>
+<label>Codice di Verifica: </label>
 <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
 </div>                                
-<button type="submit" name="signup" class="btn btn-danger" id="submit">Register Now </button>
+<button type="submit" name="signup" class="btn btn-danger" id="submit">REGISTRAMI</button>
 
                                     </form>
                             </div>

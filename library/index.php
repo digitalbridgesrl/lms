@@ -9,7 +9,7 @@ if(isset($_POST['login']))
 {
   //code for captach verification
 if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
-        echo "<script>alert('Incorrect verification code');</script>" ;
+        echo "<script>alert('Codice di verifica errato');</script>" ;
     } 
         else {
 $email=$_POST['emailid'];
@@ -30,7 +30,7 @@ if($result->Status==1)
 $_SESSION['login']=$_POST['emailid'];
 echo "<script type='text/javascript'> document.location ='dashboard.php'; </script>";
 } else {
-echo "<script>alert('Your Account Has been blocked .Please contact admin');</script>";
+echo "<script>alert('Il tuo account è stato bloccato. Contatta l'amministratore.');</script>";
 
 }
 }
@@ -38,7 +38,7 @@ echo "<script>alert('Your Account Has been blocked .Please contact admin');</scr
 } 
 
 else{
-echo "<script>alert('Invalid Details');</script>";
+echo "<script>alert('Dati non corretti');</script>";
 }
 }
 }
@@ -69,7 +69,7 @@ echo "<script>alert('Invalid Details');</script>";
 <div class="container">
 <div class="row pad-botm">
 <div class="col-md-12">
-<h4 class="header-line">USER LOGIN FORM</h4>
+<h4 class="header-line">ACCESSO UTENTE</h4>
 </div>
 </div>
              
@@ -78,27 +78,27 @@ echo "<script>alert('Invalid Details');</script>";
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
 <div class="panel panel-info">
 <div class="panel-heading">
- LOGIN FORM
+ FORM DI ACCESSO
 </div>
 <div class="panel-body">
 <form role="form" method="post">
 
 <div class="form-group">
-<label>Enter Email id</label>
+<label>E-mail</label>
 <input class="form-control" type="text" name="emailid" required autocomplete="off" />
 </div>
 <div class="form-group">
 <label>Password</label>
 <input class="form-control" type="password" name="password" required autocomplete="off"  />
-<p class="help-block"><a href="user-forgot-password.php">Forgot Password</a></p>
+<p class="help-block"><a href="user-forgot-password.php">Password Dimenticata?</a></p>
 </div>
 
  <div class="form-group">
-<label>Verification code : </label>
+<label>Codice di verifica</label>
 <input type="text" class="form-control1"  name="vercode" maxlength="5" autocomplete="off" required  style="height:25px;" />&nbsp;<img src="captcha.php">
 </div> 
 
- <button type="submit" name="login" class="btn btn-info">LOGIN </button> | <a href="signup.php">Not Register Yet</a>
+ <button type="submit" name="login" class="btn btn-info">LOGIN </button> | <a href="signup.php">Non sei ancora registrato?</a>
 </form>
  </div>
 </div>
