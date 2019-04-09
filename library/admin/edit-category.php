@@ -32,7 +32,7 @@ header('location:manage-categories.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | Edit Categories</title>
+    <title>Online Library Management System | Modifica Categoria</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -61,7 +61,7 @@ header('location:manage-categories.php');
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3"">
 <div class="panel panel-info">
 <div class="panel-heading">
-Category Info
+Informazioni sulla Categoria
 </div>
  
 <div class="panel-body">
@@ -79,7 +79,7 @@ foreach($results as $result)
 {               
   ?> 
 <div class="form-group">
-<label>Category Name</label>
+<label>Nome: </label>
 <input class="form-control" type="text" name="category" value="<?php echo htmlentities($result->CategoryName);?>" required />
 </div>
 <div class="form-group">
@@ -87,29 +87,29 @@ foreach($results as $result)
 <?php if($result->Status==1) {?>
  <div class="radio">
 <label>
-<input type="radio" name="status" id="status" value="1" checked="checked">Active
+<input type="radio" name="status" id="status" value="1" checked="checked">Attiva
 </label>
 </div>
 <div class="radio">
 <label>
-<input type="radio" name="status" id="status" value="0">Inactive
+<input type="radio" name="status" id="status" value="0">Inattiva
 </label>
 </div>
 <?php } else { ?>
 <div class="radio">
 <label>
-<input type="radio" name="status" id="status" value="0" checked="checked">Inactive
+<input type="radio" name="status" id="status" value="0" checked="checked">Inattiva
 </label>
 </div>
  <div class="radio">
 <label>
-<input type="radio" name="status" id="status" value="1">Active
+<input type="radio" name="status" id="status" value="1">Attiva
 </label>
 </div
 <?php } ?>
 </div>
 <?php }} ?>
-<button type="submit" name="update" class="btn btn-info">Update </button>
+<button type="submit" name="update" class="btn btn-info">AGGIORNA</button>
 
                                     </form>
                             </div>

@@ -45,7 +45,7 @@ header('location:reg-students.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | Manage Reg Students</title>
+    <title>Online Library Management System | Gestisci Studenti Registrati</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -66,7 +66,7 @@ header('location:reg-students.php');
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Reg Students</h4>
+                <h4 class="header-line">Gestisci Studenti Registrati</h4>
     </div>
 
 
@@ -84,13 +84,13 @@ header('location:reg-students.php');
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Student ID</th>
-                                            <th>Student Name</th>
-                                            <th>Email id </th>
-                                            <th>Mobile Number</th>
-                                            <th>Reg Date</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>ID Studente</th>
+                                            <th>Cognome e Nome</th>
+                                            <th>Email</th>
+                                            <th>Cellulare</th>
+                                            <th>Data di Registrazione</th>
+                                            <th>Stato</th>
+                                            <th>Azione</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -112,25 +112,25 @@ foreach($results as $result)
                                              <td class="center"><?php echo htmlentities($result->RegDate);?></td>
                                             <td class="center"><?php if($result->Status==1)
                                             {
-                                                echo htmlentities("Active");
+                                                echo htmlentities("Attivo");
                                             } else {
 
 
-                                            echo htmlentities("Blocked");
+                                            echo htmlentities("Bloccato");
 }
                                             ?></td>
                                             <td class="center">
 <?php if($result->Status==1)
  {?>
-<a href="reg-students.php?inid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to block this student?');"" >  <button class="btn btn-danger"> Inactive</button>
+<a href="reg-students.php?inid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sei sicuro di voler bloccare questo studente?');"" >  <button class="btn btn-danger">BLOCCA</button>
 <?php } else {?>
 
-                                            <a href="reg-students.php?id=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to active this student?');""><button class="btn btn-primary"> Active</button> 
+                                            <a href="reg-students.php?id=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sei sicuro di voler attivare questo studente?');""><button class="btn btn-primary">ATTIVA</button>
                                             <?php } ?>
                                           
                                             </td>
                                         </tr>
- <?php $cnt=$cnt+1;}} ?>                                      
+ <?php $cnt=$cnt+1;}} ?>
                                     </tbody>
                                 </table>
                             </div>

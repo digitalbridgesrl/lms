@@ -16,7 +16,7 @@
 {
 ?> 
             <div class="right-div">
-                <a href="logout.php" class="btn btn-danger pull-right">LOG ME OUT</a>
+                <a href="logout.php" class="btn btn-danger pull-right">ESCI</a>
             </div>
             <?php }?>
         </div>
@@ -31,17 +31,17 @@
                 <div class="col-md-12">
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a href="dashboard.php" class="menu-top-active">DASHBOARD</a></li>
+                            <li><a href="dashboard.php" class="menu-top-active">CRUSCOTTO</a></li>
                            
                           
    <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> Account <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="my-profile.php">My Profile</a></li>
-                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php">Change Password</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="my-profile.php">Profilo</a></li>
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php">Cambio Password</a></li>
                                 </ul>
                             </li>
-                            <li><a href="issued-books.php">Issued Books</a></li>
+                            <li><a href="issued-books.php">Libri in Prestito</a></li>
                           
 
                         </ul>
@@ -59,9 +59,9 @@
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">                        
                           
-  <li><a href="adminlogin.php">Admin Login</a></li>
-                            <li><a href="signup.php">User Signup</a></li>
-                             <li><a href="index.php">User Login</a></li>
+  <li><a href="adminlogin.php">Accesso Amministratore</a></li>
+                            <li><a href="signup.php">Registrazione Utente</a></li>
+                             <li><a href="index.php">Accesso Utente</a></li>
                           
 
                         </ul>

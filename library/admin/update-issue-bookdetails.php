@@ -34,7 +34,7 @@ header('location:manage-issued-books.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | Issued Book Details</title>
+    <title>Online Library Management System | Dettagli Libri in Prestito</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -93,7 +93,7 @@ error:function (){}
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Issued Book Details</h4>
+                <h4 class="header-line">Dettagli Libri in Prestito</h4>
                 
                             </div>
 
@@ -102,7 +102,7 @@ error:function (){}
 <div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-1"">
 <div class="panel panel-info">
 <div class="panel-heading">
-Issued Book Details
+Dettagli Libri in Prestito
 </div>
 <div class="panel-body">
 <form role="form" method="post">
@@ -123,32 +123,32 @@ foreach($results as $result)
 
 
 <div class="form-group">
-<label>Student Name :</label>
+<label>Studente: </label>
 <?php echo htmlentities($result->FullName);?>
 </div>
 
 <div class="form-group">
-<label>Book Name :</label>
+<label>Libro: </label>
 <?php echo htmlentities($result->BookName);?>
 </div>
 
 
 <div class="form-group">
-<label>ISBN :</label>
+<label>ISBN: </label>
 <?php echo htmlentities($result->ISBNNumber);?>
 </div>
 
 <div class="form-group">
-<label>Book Issued Date :</label>
+<label>Data Prestito: </label>
 <?php echo htmlentities($result->IssuesDate);?>
 </div>
 
 
 <div class="form-group">
-<label>Book Returned Date :</label>
+<label>Data Restituzione: </label>
 <?php if($result->ReturnDate=="")
                                             {
-                                                echo htmlentities("Not Return Yet");
+                                                echo htmlentities("Non Ancora Restituito");
                                             } else {
 
 
@@ -158,7 +158,7 @@ foreach($results as $result)
 </div>
 
 <div class="form-group">
-<label>Fine (in USD) :</label>
+<label>Tariffa: </label>
 <?php 
 if($result->fine=="")
 {?>
@@ -171,7 +171,7 @@ echo htmlentities($result->fine);
 </div>
  <?php if($result->RetrunStatus==0){?>
 
-<button type="submit" name="return" id="submit" class="btn btn-info">Return Book </button>
+<button type="submit" name="return" id="submit" class="btn btn-info">RESTITUZIONE</button>
 
  </div>
 

@@ -38,7 +38,7 @@ header('location:manage-issued-books.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | Issue a new Book</title>
+    <title>Online Library Management System | Nuovo Prestito</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -106,13 +106,13 @@ error:function (){}
 <div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-1"">
 <div class="panel panel-info">
 <div class="panel-heading">
-Issue a New Book
+Prestito di un Libro
 </div>
 <div class="panel-body">
 <form role="form" method="post">
 
 <div class="form-group">
-<label>Srtudent id<span style="color:red;">*</span></label>
+<label>ID Studente: <span style="color:red;">*</span></label>
 <input class="form-control" type="text" name="studentid" id="studentid" onBlur="getstudent()" autocomplete="off"  required />
 </div>
 
@@ -125,7 +125,7 @@ Issue a New Book
 
 
 <div class="form-group">
-<label>ISBN Number or Book Title<span style="color:red;">*</span></label>
+<label>Codice ISBN o Titolo: <span style="color:red;">*</span></label>
 <input class="form-control" type="text" name="booikid" id="bookid" onBlur="getbook()"  required="required" />
 </div>
 
@@ -135,7 +135,7 @@ Issue a New Book
    
  </select>
  </div>
-<button type="submit" name="issue" id="submit" class="btn btn-info">Issue Book </button>
+<button type="submit" name="issue" id="submit" class="btn btn-info">EMETTI PRESTITO</button>
 
                                     </form>
                             </div>

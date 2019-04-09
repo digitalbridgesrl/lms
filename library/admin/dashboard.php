@@ -17,7 +17,7 @@ else{?>
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Online Library Management System | Admin Dash Board</title>
+    <title>Online Library Management System | Cruscotto Amministratore</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -36,7 +36,7 @@ else{?>
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">ADMIN DASHBOARD</h4>
+                <h4 class="header-line">CRUSCOTTO AMMINISTRATORE</h4>
                 
                             </div>
 
@@ -57,7 +57,7 @@ $listdbooks=$query->rowCount();
 
 
                             <h3><?php echo htmlentities($listdbooks);?></h3>
-                      Books Listed
+                      Libri in Banca Dati
                         </div>
                     </div>
 
@@ -74,7 +74,7 @@ $issuedbooks=$query1->rowCount();
 ?>
 
                             <h3><?php echo htmlentities($issuedbooks);?> </h3>
-                           Times Book Issued
+                           Numero Prestiti
                         </div>
                     </div>
              
@@ -92,7 +92,7 @@ $returnedbooks=$query2->rowCount();
 ?>
 
                             <h3><?php echo htmlentities($returnedbooks);?></h3>
-                          Times  Books Returned
+                          Numero Restituzioni
                         </div>
                     </div>
                <div class="col-md-3 col-sm-3 col-xs-6">
@@ -106,7 +106,7 @@ $results3=$query3->fetchAll(PDO::FETCH_OBJ);
 $regstds=$query3->rowCount();
 ?>
                             <h3><?php echo htmlentities($regstds);?></h3>
-                           Registered Users
+                           Utenti in Banca Dati
                         </div>
                     </div>
 
@@ -129,7 +129,7 @@ $listdathrs=$query4->rowCount();
 
 
                             <h3><?php echo htmlentities($listdathrs);?></h3>
-                      Authors Listed
+                      Autori in Banca Dati
                         </div>
                     </div>
 
@@ -146,7 +146,7 @@ $listdcats=$query5->rowCount();
 ?>
 
                             <h3><?php echo htmlentities($listdcats);?> </h3>
-                           Listed Categories
+                           Categorie in Banca Dati
                         </div>
                     </div>
              

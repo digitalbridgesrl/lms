@@ -44,7 +44,7 @@ header('location:manage-books.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | Add Book</title>
+    <title>Online Library Management System | Aggiungi Libro</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -73,19 +73,19 @@ header('location:manage-books.php');
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3"">
 <div class="panel panel-info">
 <div class="panel-heading">
-Book Info
+Informazioni sul Libro
 </div>
 <div class="panel-body">
 <form role="form" method="post">
 <div class="form-group">
-<label>Book Name<span style="color:red;">*</span></label>
+<label>Titolo: <span style="color:red;">*</span></label>
 <input class="form-control" type="text" name="bookname" autocomplete="off"  required />
 </div>
 
 <div class="form-group">
-<label> Category<span style="color:red;">*</span></label>
+<label>Categoria: <span style="color:red;">*</span></label>
 <select class="form-control" name="category" required="required">
-<option value=""> Select Category</option>
+<option value="">Seleziona Categoria</option>
 <?php 
 $status=1;
 $sql = "SELECT * from  lms_tblcategory where Status=:status";
@@ -105,9 +105,9 @@ foreach($results as $result)
 
 
 <div class="form-group">
-<label> Author<span style="color:red;">*</span></label>
+<label>Autore: <span style="color:red;">*</span></label>
 <select class="form-control" name="author" required="required">
-<option value=""> Select Author</option>
+<option value="">Seleziona Autore</option>
 <?php 
 
 $sql = "SELECT * from  lms_tblauthors ";
@@ -125,16 +125,16 @@ foreach($results as $result)
 </div>
 
 <div class="form-group">
-<label>ISBN Number<span style="color:red;">*</span></label>
+<label>ISBN: <span style="color:red;">*</span></label>
 <input class="form-control" type="text" name="isbn"  required="required" autocomplete="off"  />
-<p class="help-block">An ISBN is an International Standard Book Number.ISBN Must be unique</p>
+<p class="help-block">Indicare il codice che identifica univocamente il libro.</p>
 </div>
 
  <div class="form-group">
- <label>Price<span style="color:red;">*</span></label>
+ <label>Prezzo: <span style="color:red;">*</span></label>
  <input class="form-control" type="text" name="price" autocomplete="off"   required="required" />
  </div>
-<button type="submit" name="add" class="btn btn-info">Add </button>
+<button type="submit" name="add" class="btn btn-info">AGGIUNGI</button>
 
                                     </form>
                             </div>

@@ -28,7 +28,7 @@ header('location:manage-books.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | Gestione Libri Emessi</title>
+    <title>Online Library Management System | Gestione Libri in Prestito</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -49,7 +49,7 @@ header('location:manage-books.php');
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Gestione Libri Emessi</h4>
+                <h4 class="header-line">Gestione Libri in Prestito</h4>
     </div>
     
 
@@ -58,7 +58,7 @@ header('location:manage-books.php');
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          Libri Emessi
+                          Libri in Prestito
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">

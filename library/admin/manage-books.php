@@ -28,7 +28,7 @@ header('location:manage-books.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | Manage Books</title>
+    <title>Online Library Management System | Gestisci Libri</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -49,7 +49,7 @@ header('location:manage-books.php');
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Books</h4>
+                <h4 class="header-line">Gestisci Libri</h4>
     </div>
      <div class="row">
     <?php if($_SESSION['error']!="")
@@ -66,7 +66,7 @@ header('location:manage-books.php');
 {?>
 <div class="col-md-6">
 <div class="alert alert-success" >
- <strong>Success :</strong> 
+ <strong>OK: </strong> 
  <?php echo htmlentities($_SESSION['msg']);?>
 <?php echo htmlentities($_SESSION['msg']="");?>
 </div>
@@ -76,7 +76,7 @@ header('location:manage-books.php');
 {?>
 <div class="col-md-6">
 <div class="alert alert-success" >
- <strong>Success :</strong> 
+ <strong>OK: </strong> 
  <?php echo htmlentities($_SESSION['updatemsg']);?>
 <?php echo htmlentities($_SESSION['updatemsg']="");?>
 </div>
@@ -88,7 +88,7 @@ header('location:manage-books.php');
     {?>
 <div class="col-md-6">
 <div class="alert alert-success" >
- <strong>Success :</strong> 
+ <strong>OK: </strong> 
  <?php echo htmlentities($_SESSION['delmsg']);?>
 <?php echo htmlentities($_SESSION['delmsg']="");?>
 </div>
@@ -104,7 +104,7 @@ header('location:manage-books.php');
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Books Listing
+                           Elenco Libri
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -112,12 +112,12 @@ header('location:manage-books.php');
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Book Name</th>
-                                            <th>Category</th>
-                                            <th>Author</th>
+                                            <th>Titolo</th>
+                                            <th>Categoria</th>
+                                            <th>Autore</th>
                                             <th>ISBN</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
+                                            <th>Prezzo</th>
+                                            <th>Azione</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -139,8 +139,8 @@ foreach($results as $result)
                                             <td class="center"><?php echo htmlentities($result->BookPrice);?></td>
                                             <td class="center">
 
-                                            <a href="edit-book.php?bookid=<?php echo htmlentities($result->bookid);?>"><button class="btn btn-primary"><i class="fa fa-edit "></i> Edit</button> 
-                                          <a href="manage-books.php?del=<?php echo htmlentities($result->bookid);?>" onclick="return confirm('Are you sure you want to delete?');"" >  <button class="btn btn-danger"><i class="fa fa-pencil"></i> Delete</button>
+                                            <a href="edit-book.php?bookid=<?php echo htmlentities($result->bookid);?>"><button class="btn btn-primary"><i class="fa fa-edit "></i>MODIFICA</button>
+                                          <a href="manage-books.php?del=<?php echo htmlentities($result->bookid);?>" onclick="return confirm('Sei sicuro di voler cancellare questo libro?');"" >  <button class="btn btn-danger"><i class="fa fa-pencil"></i>CANCELLA</button>
                                             </td>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
