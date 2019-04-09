@@ -27,7 +27,7 @@ echo "<script>alert('Invalid Details');</script>";
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System</title>
+    <title>Online Library Management System | Accesso Amministratore</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -55,17 +55,17 @@ echo "<script>alert('Invalid Details');</script>";
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
 <div class="panel panel-info">
 <div class="panel-heading">
- FORM DI ACCESSO AMMINISTRATORE
+Credenziali Amministratore
 </div>
 <div class="panel-body">
 <form role="form" method="post">
 
 <div class="form-group">
-<label>Username: </label>
+<label>Username</label>
 <input class="form-control" type="text" name="username" required />
 </div>
 <div class="form-group">
-<label>Password: </label>
+<label>Password</label>
 <input class="form-control" type="password" name="password" required />
 </div>
  <button type="submit" name="login" class="btn btn-info">ACCEDI</button>

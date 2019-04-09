@@ -66,7 +66,7 @@ echo "<script>alert('Dati non corretti');</script>";
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
 <div class="panel panel-info">
 <div class="panel-heading">
- FORM DI ACCESSO
+Credenziali Amministratore
 </div>
 <div class="panel-body">
 <form role="form" method="post">
@@ -80,7 +80,7 @@ echo "<script>alert('Dati non corretti');</script>";
 <input class="form-control" type="password" name="password" autocomplete="off" required />
 </div>
  <div class="form-group">
-<label>Codice di verifica: </label>
+<label>Codice di verifica</label>
 <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
 </div>  
 

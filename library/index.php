@@ -78,17 +78,17 @@ echo "<script>alert('Dati non corretti');</script>";
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
 <div class="panel panel-info">
 <div class="panel-heading">
- FORM DI ACCESSO UTENTE
+Credenziali Studente
 </div>
 <div class="panel-body">
 <form role="form" method="post">
 
 <div class="form-group">
-<label>E-mail: </label>
+<label>E-mail</label>
 <input class="form-control" type="text" name="emailid" required autocomplete="off" />
 </div>
 <div class="form-group">
-<label>Password: </label>
+<label>Password</label>
 <input class="form-control" type="password" name="password" required autocomplete="off"  />
 <p class="help-block"><a href="user-forgot-password.php">Password Dimenticata?</a></p>
 </div>
@@ -98,7 +98,7 @@ echo "<script>alert('Dati non corretti');</script>";
 <input type="text" class="form-control1"  name="vercode" maxlength="5" autocomplete="off" required  style="height:25px;" />&nbsp;<img src="captcha.php">
 </div> 
 
- <button type="submit" name="login" class="btn btn-info">LOGIN </button> | <a href="signup.php">Non sei ancora registrato?</a>
+ <button type="submit" name="login" class="btn btn-info">ACCEDI</button> | <a href="signup.php">Non sei ancora registrato?</a>
 </form>
  </div>
 </div>

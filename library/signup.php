@@ -6,7 +6,7 @@ if(isset($_POST['signup']))
 {
 //code for captach verification
 if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
-        echo "<script>alert('Incorrect verification code');</script>" ;
+        echo "<script>alert('Codice di verifica errato!');</script>" ;
     } 
         else {    
 //Code for student ID
@@ -34,11 +34,11 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-echo '<script>alert("Your Registration successfull and your student id is  "+"'.$StudentId.'")</script>';
+echo '<script>alert("Registrazione effettuata! ID Studente:'.$StudentId.'")</script>';
 }
 else 
 {
-echo "<script>alert('Something went wrong. Please try again');</script>";
+echo "<script>alert('Errore nella fase di registrazione. Si prega di riprovare.');</script>";
 }
 }
 }
@@ -68,7 +68,7 @@ function valid()
 {
 if(document.signup.password.value!= document.signup.confirmpassword.value)
 {
-alert("Password and Confirm Password Field do not match  !!");
+alert("Errore: le password non corrispondono!");
 document.signup.confirmpassword.focus();
 return false;
 }
@@ -110,41 +110,41 @@ error:function (){}
 <div class="col-md-9 col-md-offset-1">
                <div class="panel panel-danger">
                         <div class="panel-heading">
-                           FORM DI REGISTRAZIONE
+                           COMPILARE IL FORM DI REGISTRAZIONE
                         </div>
                         <div class="panel-body">
                             <form name="signup" method="post" onSubmit="return valid();">
 <div class="form-group">
-<label>Cognome e Nome: </label>
+<label>Cognome e Nome</label>
 <input class="form-control" type="text" name="fullanme" autocomplete="off" required />
 </div>
 
 
 <div class="form-group">
-<label>Cellulare: </label>
+<label>Cellulare</label>
 <input class="form-control" type="text" name="mobileno" maxlength="10" autocomplete="off" required />
 </div>
                                         
 <div class="form-group">
-<label>Email: </label>
+<label>Email</label>
 <input class="form-control" type="email" name="email" id="emailid" onBlur="checkAvailability()"  autocomplete="off" required  />
    <span id="user-availability-status" style="font-size:12px;"></span> 
 </div>
 
 <div class="form-group">
-<label>Password: </label>
+<label>Password</label>
 <input class="form-control" type="password" name="password" autocomplete="off" required  />
 </div>
 
 <div class="form-group">
-<label>Conferma Password: </label>
+<label>Conferma Password</label>
 <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
 </div>
  <div class="form-group">
-<label>Codice di Verifica: </label>
+<label>Codice di Verifica</label>
 <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
 </div>                                
-<button type="submit" name="signup" class="btn btn-danger" id="submit">REGISTRAMI</button>
+<button type="submit" name="signup" class="btn btn-danger" id="submit">CONFERMA</button>
 
                                     </form>
                             </div>
