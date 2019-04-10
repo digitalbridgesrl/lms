@@ -50,7 +50,7 @@ echo "<script>alert('Dati non corretti');</script>";
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | </title>
+    <title>Online Library Management System | Accesso Studente</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -69,7 +69,7 @@ echo "<script>alert('Dati non corretti');</script>";
 <div class="container">
 <div class="row pad-botm">
 <div class="col-md-12">
-<h4 class="header-line">ACCESSO UTENTE</h4>
+<h4 class="header-line">ACCESSO STUDENTE</h4>
 </div>
 </div>
              
@@ -78,7 +78,7 @@ echo "<script>alert('Dati non corretti');</script>";
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
 <div class="panel panel-info">
 <div class="panel-heading">
-Credenziali Studente
+Inserire le credenziali dello Studente
 </div>
 <div class="panel-body">
 <form role="form" method="post">

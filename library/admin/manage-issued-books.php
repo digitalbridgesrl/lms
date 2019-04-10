@@ -119,7 +119,7 @@ foreach($results as $result)
                                             <td class="center"><?php echo htmlentities($result->IssuesDate);?></td>
                                             <td class="center"><?php if($result->ReturnDate=="")
                                             {
-                                                echo htmlentities("Not Return Yet");
+                                                echo htmlentities("Non Ancora Restituito");
                                             } else {
 
 

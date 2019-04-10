@@ -60,8 +60,8 @@
                         <ul id="menu-top" class="nav navbar-nav navbar-right">                        
                           
   <li><a href="adminlogin.php">Accesso Amministratore</a></li>
-                            <li><a href="signup.php">Registrazione Utente</a></li>
-                             <li><a href="index.php">Accesso Utente</a></li>
+                             <li><a href="index.php">Accesso Studente</a></li>
+                             <li><a href="signup.php">Registrazione Studente</a></li>
                           
 
                         </ul>
