@@ -52,7 +52,7 @@
                            <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">PRESTITI<i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="issue-book.php">Presta Libri</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="issue-book.php">Nuovo Prestito</a></li>
                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="manage-issued-books.php">Gestisci Prestiti</a></li>
                                 </ul>
                             </li>

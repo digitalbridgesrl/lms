@@ -14,7 +14,7 @@ else{?>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | Pannello di Controllo</title>
+    <title>Online Library Management System | Cruscotto Studente</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -33,7 +33,7 @@ else{?>
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">PANNELLO DI CONTROLLO AMMINISTRATORE</h4>
+                <h4 class="header-line">CRUSCOTTO STUDENTE</h4>
                 
                             </div>
 
@@ -58,7 +58,7 @@ $issuedbooks=$query1->rowCount();
 ?>
 
                             <h3><?php echo htmlentities($issuedbooks);?> </h3>
-                            Libri rilasciati
+                            Libri Restituiti
                         </div>
                     </div>
              
@@ -77,7 +77,7 @@ $returnedbooks=$query2->rowCount();
 ?>
 
                             <h3><?php echo htmlentities($returnedbooks);?></h3>
-                          Libri non ancora rientrati
+                          Libri Da Restituire
                         </div>
                     </div>
         </div>

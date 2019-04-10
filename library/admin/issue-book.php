@@ -97,7 +97,7 @@ error:function (){}
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Issue a New Book</h4>
+                <h4 class="header-line">Nuovo Prestito</h4>
                 
                             </div>
 
@@ -106,7 +106,7 @@ error:function (){}
 <div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-1"">
 <div class="panel panel-info">
 <div class="panel-heading">
-Prestito di un Libro
+Compila il form con i dati richiesti
 </div>
 <div class="panel-body">
 <form role="form" method="post">
@@ -135,7 +135,7 @@ Prestito di un Libro
    
  </select>
  </div>
-<button type="submit" name="issue" id="submit" class="btn btn-info">EMETTI PRESTITO</button>
+<button type="submit" name="issue" id="submit" class="btn btn-info">CONFERMA</button>
 
                                     </form>
                             </div>

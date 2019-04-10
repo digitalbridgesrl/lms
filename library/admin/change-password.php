@@ -25,10 +25,10 @@ $chngpwd1 = $dbh->prepare($con);
 $chngpwd1-> bindParam(':username', $username, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
 $chngpwd1->execute();
-$msg="Your Password succesfully changed";
+$msg="Password cambiata con successo!";
 }
 else {
-$error="Your current password is wrong";  
+$error="Password errata. Cambio password non effettuato!";  
 }
 }
 
@@ -73,7 +73,7 @@ function valid()
 {
 if(document.chngpwd.newpassword.value!= document.chngpwd.confirmpassword.value)
 {
-alert("New Password and Confirm Password Field do not match  !!");
+alert("Le password immesse non coincidono!");
 document.chngpwd.confirmpassword.focus();
 return false;
 }
@@ -89,7 +89,7 @@ return true;
 <div class="container">
 <div class="row pad-botm">
 <div class="col-md-12">
-<h4 class="header-line">Cambio Password Utente</h4>
+<h4 class="header-line">Cambio Password Amministratore</h4>
 </div>
 </div>
  <?php if($error){?><div class="errorWrap"><strong>ERRORE</strong>:<?php echo htmlentities($error); ?> </div><?php } 
@@ -99,23 +99,23 @@ return true;
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
 <div class="panel panel-info">
 <div class="panel-heading">
-Cambio Password Utente
+Cambio Password Amministratore
 </div>
 <div class="panel-body">
 <form role="form" method="post" onSubmit="return valid();" name="chngpwd">
 
 <div class="form-group">
-<label>Password Attuale: </label>
+<label>Password Attuale</label>
 <input class="form-control" type="password" name="password" autocomplete="off" required  />
 </div>
 
 <div class="form-group">
-<label>Nuova Password: </label>
+<label>Nuova Password</label>
 <input class="form-control" type="password" name="newpassword" autocomplete="off" required  />
 </div>
 
 <div class="form-group">
-<label>Conferma Password: </label>
+<label>Conferma Password</label>
 <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
 </div>
 
