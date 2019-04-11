@@ -17,7 +17,7 @@ $query = $dbh->prepare($sql);
 $query->bindParam(':author',$author,PDO::PARAM_STR);
 $query->bindParam(':athrid',$athrid,PDO::PARAM_STR);
 $query->execute();
-$_SESSION['updatemsg']="Author info updated successfully";
+$_SESSION['updatemsg']="L'autore è stato modificato correttamente.";
 header('location:manage-authors.php');
 
 

@@ -25,7 +25,7 @@ $query->bindParam(':isbn',$isbn,PDO::PARAM_STR);
 $query->bindParam(':price',$price,PDO::PARAM_STR);
 $query->bindParam(':bookid',$bookid,PDO::PARAM_STR);
 $query->execute();
-$_SESSION['msg']="Book info updated successfully";
+$_SESSION['msg']="Il libro è stato modificato correttamente.";
 header('location:manage-books.php');
 
 

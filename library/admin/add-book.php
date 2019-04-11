@@ -26,12 +26,12 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-$_SESSION['msg']="Book Listed successfully";
+$_SESSION['msg']="Il libro è stato inserito correttamente.";
 header('location:manage-books.php');
 }
 else 
 {
-$_SESSION['error']="Something went wrong. Please try again";
+$_SESSION['error']="Errore durante l'inserimento del libro. Si prega di verificare i dati inseriti.";
 header('location:manage-books.php');
 }
 

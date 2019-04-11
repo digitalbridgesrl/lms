@@ -18,12 +18,12 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-$_SESSION['msg']="Author Listed successfully";
+$_SESSION['msg']="L'autore è stato inserito correttamente.";
 header('location:manage-authors.php');
 }
 else 
 {
-$_SESSION['error']="Something went wrong. Please try again";
+$_SESSION['error']="Errore durante la modifica o la cancellazione. Si prega di verificare i dati inseriti.";
 header('location:manage-authors.php');
 }
 

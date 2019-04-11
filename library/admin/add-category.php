@@ -20,12 +20,12 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-$_SESSION['msg']="Brand Listed successfully";
+$_SESSION['msg']="La categoria è stata inserita correttamente.";
 header('location:manage-categories.php');
 }
 else 
 {
-$_SESSION['error']="Something went wrong. Please try again";
+$_SESSION['error']="Errore durante la cancellazione o la modifica della categoria. Si prega di verificare i dati inseriti.";
 header('location:manage-categories.php');
 }
 
