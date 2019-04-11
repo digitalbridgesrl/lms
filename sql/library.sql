@@ -69,6 +69,33 @@ INSERT INTO `lms_tblauthors` (`id`, `AuthorName`, `creationDate`, `UpdationDate`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lms_tblcategory`
+--
+
+CREATE TABLE `lms_tblcategory` (
+  `id` int(11) NOT NULL,
+  `CategoryName` varchar(150) NOT NULL,
+  `Status` int(1) DEFAULT NULL,
+  `CreationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `CategoryName_UNIQUE` (`CategoryName`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Dumping data for table `lms_tblcategory`
+--
+
+INSERT INTO `lms_tblcategory` (`id`, `CategoryName`, `Status`, `CreationDate`, `UpdationDate`) VALUES
+(4, 'Romantic', 1, '2017-07-04 18:35:25', '2017-07-06 16:00:42'),
+(5, 'Technology', 1, '2017-07-04 18:35:39', '2017-07-08 17:13:03'),
+(6, 'Science', 1, '2017-07-04 18:35:55', '0000-00-00 00:00:00'),
+(7, 'Management', 0, '2017-07-04 18:36:16', '0000-00-00 00:00:00');
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lms_tblbooks`
 --
 
@@ -80,7 +107,9 @@ CREATE TABLE `lms_tblbooks` (
   `ISBNNumber` int(11) DEFAULT NULL,
   `BookPrice` int(11) DEFAULT NULL,
   `RegDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  KEY `fk_lms_tblbooks_category_id_idx` (`CatId`),
+  CONSTRAINT `fk_lms_tblbooks_category_id` FOREIGN KEY (`CatId`) REFERENCES `lms_tblcategory` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -91,29 +120,6 @@ INSERT INTO `lms_tblbooks` (`id`, `BookName`, `CatId`, `AuthorId`, `ISBNNumber`,
 (1, 'PHP And MySql programming', 5, 1, 222333, 20, '2017-07-08 20:04:55', '2017-07-15 05:54:41'),
 (3, 'physics', 6, 4, 1111, 15, '2017-07-08 20:17:31', '2017-07-15 06:13:17');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `lms_tblcategory`
---
-
-CREATE TABLE `lms_tblcategory` (
-  `id` int(11) NOT NULL,
-  `CategoryName` varchar(150) DEFAULT NULL,
-  `Status` int(1) DEFAULT NULL,
-  `CreationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `UpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `lms_tblcategory`
---
-
-INSERT INTO `lms_tblcategory` (`id`, `CategoryName`, `Status`, `CreationDate`, `UpdationDate`) VALUES
-(4, 'Romantic', 1, '2017-07-04 18:35:25', '2017-07-06 16:00:42'),
-(5, 'Technology', 1, '2017-07-04 18:35:39', '2017-07-08 17:13:03'),
-(6, 'Science', 1, '2017-07-04 18:35:55', '0000-00-00 00:00:00'),
-(7, 'Management', 0, '2017-07-04 18:36:16', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
