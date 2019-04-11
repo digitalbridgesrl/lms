@@ -14,8 +14,7 @@ $sql = "delete from lms_tblauthors  WHERE id=:id";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
-$_SESSION['delmsg']="Author deleted";
-header('location:manage-authors.php');
+$_SESSION['delmsg']="L'autore è stato cancellato correttamente.";
 
 }
 
