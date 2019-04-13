@@ -133,7 +133,7 @@ CREATE TABLE `lms_tblissuedbookdetails` (
   `StudentID` varchar(150) DEFAULT NULL,
   `IssuesDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ReturnDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `RetrunStatus` int(1) DEFAULT NULL,
+  `RetrunStatus` int(1) DEFAULT 0,
   `fine` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
