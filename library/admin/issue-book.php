@@ -20,12 +20,12 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-$_SESSION['msg']="Book issued successfully";
+$_SESSION['msg']="Prestito registrato con successo.";
 header('location:manage-issued-books.php');
 }
 else 
 {
-$_SESSION['error']="Something went wrong. Please try again";
+$_SESSION['error']="Errore durante la registrazione del prestito. Si prega di riprovare.";
 header('location:manage-issued-books.php');
 }
 
@@ -38,7 +38,7 @@ header('location:manage-issued-books.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | Nuovo Prestito</title>
+    <title>Online Library Management System | Registra Prestito</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -106,7 +106,7 @@ error:function (){}
 <div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-1"">
 <div class="panel panel-info">
 <div class="panel-heading">
-Compila il form con i dati richiesti
+Inserisci le informazioni richieste per registrare il prestito
 </div>
 <div class="panel-body">
 <form role="form" method="post">
@@ -125,7 +125,7 @@ Compila il form con i dati richiesti
 
 
 <div class="form-group">
-<label>Codice ISBN o Titolo: <span style="color:red;">*</span></label>
+<label>Codice ISBN: <span style="color:red;">*</span></label>
 <input class="form-control" type="text" name="booikid" id="bookid" onBlur="getbook()"  required="required" />
 </div>
 
