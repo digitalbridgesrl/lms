@@ -121,7 +121,7 @@ header('location:manage-books.php');
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php $sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblauthors.AuthorName,lms_tblbooks.ISBNNumber,lms_tblbooks.BookPrice,lms_tblbooks.id as bookid from  lms_tblbooks join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId";
+<?php $sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblauthors.AuthorName,lms_tblbooks.ISBNNumber,lms_tblbooks.BookPrice,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);

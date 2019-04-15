@@ -73,7 +73,7 @@ Informazioni sul Libro
 <form role="form" method="post">
 <?php 
 $bookid=intval($_GET['bookid']);
-$sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblcategory.id as cid,lms_tblauthors.AuthorName,lms_tblauthors.id as athrid,lms_tblbooks.ISBNNumber,lms_tblbooks.BookPrice,lms_tblbooks.id as bookid from  lms_tblbooks join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId where lms_tblbooks.id=:bookid";
+$sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblcategory.id as cid,lms_tblauthors.AuthorName,lms_tblauthors.id as athrid,lms_tblbooks.ISBNNumber,lms_tblbooks.BookPrice,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId where lms_tblbooks.id=:bookid";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':bookid',$bookid,PDO::PARAM_STR);
 $query->execute();
