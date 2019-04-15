@@ -5,7 +5,7 @@ if(!empty($_POST["emailid"])) {
 	$email= $_POST["emailid"];
 	if (filter_var($email, FILTER_VALIDATE_EMAIL)===false) {
 
-		echo "error : You did not enter a valid email.";
+		echo "<span style='color:red'>Errore: e-mail non valida.</span>";
 	}
 	else {
 		$sql ="SELECT EmailId FROM lms_tblstudents WHERE EmailId=:email";
@@ -16,11 +16,11 @@ $results = $query -> fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
 if($query -> rowCount() > 0)
 {
-echo "<span style='color:red'> Email already exists .</span>";
+echo "<span style='color:red'>Errore: l'e-mail corrisponde ad uno studente già registrato.</span>";
  echo "<script>$('#submit').prop('disabled',true);</script>";
 } else{
 	
-	echo "<span style='color:green'> Email available for Registration .</span>";
+	echo "<span style='color:green'>OK: l'e-mail è utilizzabile ai fini della registrazione.</span>";
  echo "<script>$('#submit').prop('disabled',false);</script>";
 }
 }

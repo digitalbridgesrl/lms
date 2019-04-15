@@ -73,7 +73,7 @@ function valid()
 {
 if(document.chngpwd.newpassword.value!= document.chngpwd.confirmpassword.value)
 {
-alert("Le password immesse non coincidono!");
+alert("I campi \"Nuova Password\" e \"Conferma Nuova Password\" non corrispondono!");
 document.chngpwd.confirmpassword.focus();
 return false;
 }
