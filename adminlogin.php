@@ -77,11 +77,12 @@ Inserire le credenziali dell'Amministratore
 <label>Password</label>
 <input class="form-control" type="password" name="password" autocomplete="off" required />
 </div>
+<!--
  <div class="form-group">
 <label>Codice di verifica</label>
 <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
 </div>  
-
+-->
  <button type="submit" name="login" class="btn btn-info">ACCEDI</button>
 </form>
  </div>
