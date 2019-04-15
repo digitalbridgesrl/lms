@@ -56,7 +56,7 @@
                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="manage-issued-books.php">Gestisci Prestiti</a></li>
                                 </ul>
                             </li>
-                             <li><a href="reg-students.php">UTENTI</a></li>
+                             <li><a href="reg-students.php">STUDENTI</a></li>
                     
   <li><a href="change-password.php">Cambio Password</a></li>
                         </ul>
