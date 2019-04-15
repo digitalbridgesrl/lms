@@ -172,7 +172,7 @@ $listdcats=$query5->rowCount();
 
 
 
-
+<!-- slider
              <div class="row">
 
               <div class="col-md-10 col-sm-8 col-xs-12 col-md-offset-1">
@@ -193,13 +193,13 @@ $listdcats=$query5->rowCount();
                            
                         </div>
                     </div>
-                    <!--INDICATORS-->
+                    
                      <ol class="carousel-indicators">
                         <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel-example" data-slide-to="1"></li>
                         <li data-target="#carousel-example" data-slide-to="2"></li>
                     </ol>
-                    <!--PREVIUS-NEXT BUTTONS-->
+                    
                      <a class="left carousel-control" href="#carousel-example" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left"></span>
   </a>
@@ -214,7 +214,7 @@ $listdcats=$query5->rowCount();
                
             
              </div>
-            
+ -->          
     </div>
     </div>
      <!-- CONTENT-WRAPPER SECTION END-->
