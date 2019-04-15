@@ -10,12 +10,16 @@ else{
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
-$sql = "delete from lms_tblbooks  WHERE id=:id";
+$sql = "DELETE from lms_tblbooks  WHERE id=:id";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
-$query -> execute();
-$_SESSION['delmsg']="Il libro è stato cancellato correttamente.";
-header('location:manage-books.php');
+$errquery = $query -> execute();
+
+if($errquery == true){
+    $_SESSION['delmsg']="Libro cancellato correttamente.";
+}else{
+    $_SESSION['error']="Impossibile cancellare il libro.";
+}
 
 }
 
@@ -50,14 +54,14 @@ header('location:manage-books.php');
         <div class="row pad-botm">
             <div class="col-md-12">
                 <h4 class="header-line">Gestisci Libri</h4>
-    </div>
-     <div class="row">
-    <?php if($_SESSION['error']!="")
-    {?>
+</div>
+<div class="row">
+<?php if($_SESSION['error']!="")
+{?>
 <div class="col-md-6">
 <div class="alert alert-danger" >
- <strong>Error :</strong> 
- <?php echo htmlentities($_SESSION['error']);?>
+<strong>ERRORE: </strong> 
+<?php echo htmlentities($_SESSION['error']);?>
 <?php echo htmlentities($_SESSION['error']="");?>
 </div>
 </div>
@@ -66,8 +70,8 @@ header('location:manage-books.php');
 {?>
 <div class="col-md-6">
 <div class="alert alert-success" >
- <strong>OK: </strong> 
- <?php echo htmlentities($_SESSION['msg']);?>
+<strong>OK: </strong> 
+<?php echo htmlentities($_SESSION['msg']);?>
 <?php echo htmlentities($_SESSION['msg']="");?>
 </div>
 </div>
@@ -76,20 +80,18 @@ header('location:manage-books.php');
 {?>
 <div class="col-md-6">
 <div class="alert alert-success" >
- <strong>OK: </strong> 
- <?php echo htmlentities($_SESSION['updatemsg']);?>
+<strong>OK: </strong> 
+<?php echo htmlentities($_SESSION['updatemsg']);?>
 <?php echo htmlentities($_SESSION['updatemsg']="");?>
 </div>
 </div>
 <?php } ?>
-
-
-   <?php if($_SESSION['delmsg']!="")
-    {?>
+<?php if($_SESSION['delmsg']!="")
+{?>
 <div class="col-md-6">
 <div class="alert alert-success" >
- <strong>OK: </strong> 
- <?php echo htmlentities($_SESSION['delmsg']);?>
+<strong>OK: </strong> 
+<?php echo htmlentities($_SESSION['delmsg']);?>
 <?php echo htmlentities($_SESSION['delmsg']="");?>
 </div>
 </div>
