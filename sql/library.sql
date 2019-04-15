@@ -109,7 +109,9 @@ CREATE TABLE `lms_tblbooks` (
   `RegDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   KEY `fk_lms_tblbooks_category_id_idx` (`CatId`),
-  CONSTRAINT `fk_lms_tblbooks_category_id` FOREIGN KEY (`CatId`) REFERENCES `lms_tblcategory` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_lms_tblbooks_author_id_idx` (`AuthorId`),
+  CONSTRAINT `fk_lms_tblbooks_category_id` FOREIGN KEY (`CatId`) REFERENCES `lms_tblcategory` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_lms_tblbooks_author_id` FOREIGN KEY (`AuthorId`) REFERENCES `lms_tblauthors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
