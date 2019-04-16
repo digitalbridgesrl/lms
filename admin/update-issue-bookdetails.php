@@ -11,12 +11,10 @@ else{
 if(isset($_POST['return']))
 {
 $rid=intval($_GET['rid']);
-$fine=$_POST['fine'];
 $rstatus=1;
-$sql="update lms_tblissuedbookdetails set fine=:fine,RetrunStatus=:rstatus where id=:rid";
+$sql="update lms_tblissuedbookdetails set RetrunStatus=:rstatus where id=:rid";
 $query = $dbh->prepare($sql);
 $query->bindParam(':rid',$rid,PDO::PARAM_STR);
-$query->bindParam(':fine',$fine,PDO::PARAM_STR);
 $query->bindParam(':rstatus',$rstatus,PDO::PARAM_STR);
 $query->execute();
 
@@ -108,7 +106,7 @@ Dettaglio Libro in Prestito
 <form role="form" method="post">
 <?php 
 $rid=intval($_GET['rid']);
-$sql = "SELECT lms_tblstudents.FullName,lms_tblbooks.BookName,lms_tblbooks.ISBNNumber,lms_tblissuedbookdetails.IssuesDate,lms_tblissuedbookdetails.ReturnDate,lms_tblissuedbookdetails.id as rid,lms_tblissuedbookdetails.fine,lms_tblissuedbookdetails.RetrunStatus from  lms_tblissuedbookdetails join lms_tblstudents on lms_tblstudents.StudentId=lms_tblissuedbookdetails.StudentId join lms_tblbooks on lms_tblbooks.id=lms_tblissuedbookdetails.BookId where lms_tblissuedbookdetails.id=:rid";
+$sql = "SELECT lms_tblstudents.FullName,lms_tblbooks.BookName,lms_tblbooks.ISBNNumber,lms_tblissuedbookdetails.IssuesDate,lms_tblissuedbookdetails.ReturnDate,lms_tblissuedbookdetails.id as rid,lms_tblissuedbookdetails.RetrunStatus from  lms_tblissuedbookdetails join lms_tblstudents on lms_tblstudents.StudentId=lms_tblissuedbookdetails.StudentId join lms_tblbooks on lms_tblbooks.id=lms_tblissuedbookdetails.BookId where lms_tblissuedbookdetails.id=:rid";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 $query->execute();
@@ -158,17 +156,6 @@ foreach($results as $result)
 </div>
 
 <div class="form-group">
-<label>Tariffa: </label>
-<?php 
-if($result->fine=="")
-{?>
-<input class="form-control" type="text" name="fine" id="fine"  required />
-
-<?php }else {
-echo htmlentities($result->fine);
-}
-?>
-</div>
  <?php if($result->RetrunStatus==0){?>
 
 <button type="submit" name="return" id="submit" class="btn btn-info">RESTITUZIONE</button>

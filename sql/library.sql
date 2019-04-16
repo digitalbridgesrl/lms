@@ -105,7 +105,6 @@ CREATE TABLE `lms_tblbooks` (
   `CatId` int(11) DEFAULT NULL,
   `AuthorId` int(11) DEFAULT NULL,
   `ISBNNumber` int(11) DEFAULT NULL,
-  `BookPrice` int(11) DEFAULT NULL,
   `RegDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   KEY `fk_lms_tblbooks_category_id_idx` (`CatId`),
@@ -118,9 +117,9 @@ CREATE TABLE `lms_tblbooks` (
 -- Dumping data for table `lms_tblbooks`
 --
 
-INSERT INTO `lms_tblbooks` (`id`, `BookName`, `CatId`, `AuthorId`, `ISBNNumber`, `BookPrice`, `RegDate`, `UpdationDate`) VALUES
-(1, 'PHP And MySql programming', 5, 1, 222333, 20, '2017-07-08 20:04:55', '2017-07-15 05:54:41'),
-(3, 'physics', 6, 4, 1111, 15, '2017-07-08 20:17:31', '2017-07-15 06:13:17');
+INSERT INTO `lms_tblbooks` (`id`, `BookName`, `CatId`, `AuthorId`, `ISBNNumber`, `RegDate`, `UpdationDate`) VALUES
+(1, 'PHP And MySql programming', 5, 1, 222333, '2017-07-08 20:04:55', '2017-07-15 05:54:41'),
+(3, 'physics', 6, 4, 1111, '2017-07-08 20:17:31', '2017-07-15 06:13:17');
 
 
 -- --------------------------------------------------------
@@ -136,20 +135,19 @@ CREATE TABLE `lms_tblissuedbookdetails` (
   `IssuesDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ReturnDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `RetrunStatus` int(1) DEFAULT 0,
-  `fine` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lms_tblissuedbookdetails`
 --
 
-INSERT INTO `lms_tblissuedbookdetails` (`id`, `BookId`, `StudentID`, `IssuesDate`, `ReturnDate`, `RetrunStatus`, `fine`) VALUES
-(1, 1, 'SID002', '2017-07-15 06:09:47', '2017-07-15 11:15:20', 1, 0),
-(2, 1, 'SID002', '2017-07-15 06:12:27', '2017-07-15 11:15:23', 1, 5),
-(3, 3, 'SID002', '2017-07-15 06:13:40', NULL, 0, NULL),
-(4, 3, 'SID002', '2017-07-15 06:23:23', '2017-07-15 11:22:29', 1, 2),
-(5, 1, 'SID009', '2017-07-15 10:59:26', NULL, 0, NULL),
-(6, 3, 'SID011', '2017-07-15 18:02:55', NULL, 0, NULL);
+INSERT INTO `lms_tblissuedbookdetails` (`id`, `BookId`, `StudentID`, `IssuesDate`, `ReturnDate`, `RetrunStatus`) VALUES
+(1, 1, 'SID002', '2017-07-15 06:09:47', '2017-07-15 11:15:20', 1),
+(2, 1, 'SID002', '2017-07-15 06:12:27', '2017-07-15 11:15:23', 1),
+(3, 3, 'SID002', '2017-07-15 06:13:40', NULL, 0),
+(4, 3, 'SID002', '2017-07-15 06:23:23', '2017-07-15 11:22:29', 1),
+(5, 1, 'SID009', '2017-07-15 10:59:26', NULL, 0),
+(6, 3, 'SID011', '2017-07-15 18:02:55', NULL, 0);
 
 -- --------------------------------------------------------
 

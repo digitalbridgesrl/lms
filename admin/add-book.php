@@ -14,14 +14,12 @@ $bookname=$_POST['bookname'];
 $category=$_POST['category'];
 $author=$_POST['author'];
 $isbn=$_POST['isbn'];
-$price=$_POST['price'];
-$sql="INSERT INTO  lms_tblbooks(BookName,CatId,AuthorId,ISBNNumber,BookPrice) VALUES(:bookname,:category,:author,:isbn,:price)";
+$sql="INSERT INTO  lms_tblbooks(BookName,CatId,AuthorId,ISBNNumber) VALUES(:bookname,:category,:author,:isbn)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':bookname',$bookname,PDO::PARAM_STR);
 $query->bindParam(':category',$category,PDO::PARAM_STR);
 $query->bindParam(':author',$author,PDO::PARAM_STR);
 $query->bindParam(':isbn',$isbn,PDO::PARAM_STR);
-$query->bindParam(':price',$price,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
@@ -130,10 +128,6 @@ foreach($results as $result)
 <p class="help-block">Indicare il codice che identifica univocamente il libro.</p>
 </div>
 
- <div class="form-group">
- <label>Prezzo: <span style="color:red;">*</span></label>
- <input class="form-control" type="text" name="price" autocomplete="off"   required="required" />
- </div>
 <button type="submit" name="add" class="btn btn-info">AGGIUNGI</button>
 
                                     </form>

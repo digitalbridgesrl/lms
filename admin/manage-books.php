@@ -118,12 +118,11 @@ if($errquery == true){
                                             <th>Categoria</th>
                                             <th>Autore</th>
                                             <th>ISBN</th>
-                                            <th>Prezzo</th>
                                             <th>Azione</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php $sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblauthors.AuthorName,lms_tblbooks.ISBNNumber,lms_tblbooks.BookPrice,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId";
+<?php $sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblauthors.AuthorName,lms_tblbooks.ISBNNumber,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -138,7 +137,6 @@ foreach($results as $result)
                                             <td class="center"><?php echo htmlentities($result->CategoryName);?></td>
                                             <td class="center"><?php echo htmlentities($result->AuthorName);?></td>
                                             <td class="center"><?php echo htmlentities($result->ISBNNumber);?></td>
-                                            <td class="center"><?php echo htmlentities($result->BookPrice);?></td>
                                             <td class="center">
 
                                             <a href="edit-book.php?bookid=<?php echo htmlentities($result->bookid);?>"><button class="btn btn-primary"><i class="fa fa-edit "></i>MODIFICA</button>
