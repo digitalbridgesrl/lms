@@ -35,7 +35,7 @@ echo '<script>alert("Your profile has been updated")</script>';
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Online Library Management System | Registrazione Studente</title>
+    <title>Online Library Management System | Profilo Studente</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -54,7 +54,7 @@ echo '<script>alert("Your profile has been updated")</script>';
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Il Mio Profilo</h4>
+                <h4 class="header-line">Profilo Studente</h4>
                 
                             </div>
 
@@ -64,7 +64,7 @@ echo '<script>alert("Your profile has been updated")</script>';
 <div class="col-md-9 col-md-offset-1">
                <div class="panel panel-danger">
                         <div class="panel-heading">
-                           Il Mio Profilo
+                           Compila il modulo per aggiornare i tuoi dati
                         </div>
                         <div class="panel-body">
                             <form name="signup" method="post">
@@ -109,23 +109,23 @@ foreach($results as $result)
 
 
 <div class="form-group">
-<label>Cognome e Nome: </label>
+<label>Cognome e Nome</label>
 <input class="form-control" type="text" name="fullanme" value="<?php echo htmlentities($result->FullName);?>" autocomplete="off" required />
 </div>
 
 
 <div class="form-group">
-<label>Cellulare: </label>
+<label>Cellulare</label>
 <input class="form-control" type="text" name="mobileno" maxlength="10" value="<?php echo htmlentities($result->MobileNumber);?>" autocomplete="off" required />
 </div>
                                         
 <div class="form-group">
-<label>Email: </label>
+<label>Email</label>
 <input class="form-control" type="email" name="email" id="emailid" value="<?php echo htmlentities($result->EmailId);?>"  autocomplete="off" required readonly />
 </div>
 <?php }} ?>
                               
-<button type="submit" name="update" class="btn btn-primary" id="submit">Update Now </button>
+<button type="submit" name="update" class="btn btn-primary" id="submit">AGGIORNA</button>
 
                                     </form>
                             </div>

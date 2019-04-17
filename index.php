@@ -89,7 +89,7 @@ Inserire le credenziali dello Studente
 <div class="form-group">
 <label>Password</label>
 <input class="form-control" type="password" name="password" required autocomplete="off"  />
-<p class="help-block"><a href="user-forgot-password.php">Password Dimenticata?</a></p>
+<p class="help-block"><a href="user-forgot-password.php">Password Dimenticata?</a> | <a href="signup.php">Non sei ancora registrato?</a></p>
 </div>
 
 <!--
@@ -99,7 +99,7 @@ Inserire le credenziali dello Studente
 </div>
 -->
 
- <button type="submit" name="login" class="btn btn-info">ACCEDI</button> | <a href="signup.php">Non sei ancora registrato?</a>
+ <button type="submit" name="login" class="btn btn-info">ACCEDI</button>
 </form>
  </div>
 </div>
