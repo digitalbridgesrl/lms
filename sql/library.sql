@@ -69,6 +69,21 @@ INSERT INTO `lms_tblauthors` (`id`, `AuthorName`, `creationDate`, `UpdationDate`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lms_tblpublishers`
+--
+
+CREATE TABLE `lms_tblpublishers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `PublisherName` varchar(150) NOT NULL,
+  `CreationDate` timestamp NULL DEFAULT current_timestamp(),
+  `UpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `PublisherName_UNIQUE` (`PublisherName`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+
+--
 -- Table structure for table `lms_tblcategory`
 --
 
@@ -104,6 +119,7 @@ CREATE TABLE `lms_tblbooks` (
   `BookName` varchar(255) DEFAULT NULL,
   `CatId` int(11) DEFAULT NULL,
   `AuthorId` int(11) DEFAULT NULL,
+  `PublisherId` int(11) DEFAULT NULL,
   `ISBNNumber` int(11) DEFAULT NULL,
   `InventoryNumber` int(11) DEFAULT NULL,
   `RegDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -112,8 +128,10 @@ CREATE TABLE `lms_tblbooks` (
   UNIQUE KEY `InventoryNumber_UNIQUE` (`InventoryNumber`),
   KEY `fk_lms_tblbooks_category_id_idx` (`CatId`),
   KEY `fk_lms_tblbooks_author_id_idx` (`AuthorId`),
+  KEY `fk_lms_tblbooks_publisher_id_idx` (`PublisherId`),
   CONSTRAINT `fk_lms_tblbooks_category_id` FOREIGN KEY (`CatId`) REFERENCES `lms_tblcategory` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_lms_tblbooks_author_id` FOREIGN KEY (`AuthorId`) REFERENCES `lms_tblauthors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_lms_tblbooks_author_id` FOREIGN KEY (`AuthorId`) REFERENCES `lms_tblauthors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_lms_tblbooks_publisher_id` FOREIGN KEY (`PublisherId`) REFERENCES `lms_tblpublishers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

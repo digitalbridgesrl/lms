@@ -8,24 +8,19 @@ header('location:index.php');
 }
 else{ 
 
-if(isset($_POST['create']))
+if(isset($_POST['update']))
 {
-$author=$_POST['author'];
-$sql="INSERT INTO  lms_tblauthors(AuthorName) VALUES(:author)";
+$pubid=intval($_GET['pubid']);
+$publisher=$_POST['publisher'];
+$sql="update  lms_tblpublishers set PublisherName=:publisher where id=:pubid";
 $query = $dbh->prepare($sql);
-$query->bindParam(':author',$author,PDO::PARAM_STR);
+$query->bindParam(':publisher',$publisher,PDO::PARAM_STR);
+$query->bindParam(':pubid',$pubid,PDO::PARAM_STR);
 $query->execute();
-$lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
-{
-$_SESSION['msg']="L'autore è stato inserito correttamente.";
-header('location:manage-authors.php');
-}
-else 
-{
-$_SESSION['error']="Errore durante la modifica o la cancellazione. Si prega di verificare i dati inseriti.";
-header('location:manage-authors.php');
-}
+$_SESSION['updatemsg']="L'editore è stato modificato correttamente.";
+header('location:manage-publishers.php');
+
+
 
 }
 ?>
@@ -35,8 +30,8 @@ header('location:manage-authors.php');
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Online Library Management System | Aggiungi Autore</title>
+    <meta name="publisher" content="" />
+    <title>Online Library Management System | Modifica Editore</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -56,7 +51,7 @@ header('location:manage-authors.php');
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Aggiungi Autore</h4>
+                <h4 class="header-line">Modifica Editore</h4>
                 
                             </div>
 
@@ -65,16 +60,29 @@ header('location:manage-authors.php');
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3"">
 <div class="panel panel-info">
 <div class="panel-heading">
-Informazioni sull'Autore
+Informazioni sull'Editore
 </div>
 <div class="panel-body">
 <form role="form" method="post">
 <div class="form-group">
-<label>Nome dell'Autore: </label>
-<input class="form-control" type="text" name="author" autocomplete="off"  required />
+<label>Editore: </label>
+<?php 
+$pubid=intval($_GET['pubid']);
+$sql = "SELECT * from  lms_tblpublishers where id=:pubid";
+$query = $dbh -> prepare($sql);
+$query->bindParam(':pubid',$pubid,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>   
+<input class="form-control" type="text" name="publisher" value="<?php echo htmlentities($result->PublisherName);?>" required />
+<?php }} ?>
 </div>
 
-<button type="submit" name="create" class="btn btn-info">AGGIUNGI</button>
+<button type="submit" name="update" class="btn btn-info">AGGIORNA</button>
 
                                     </form>
                             </div>

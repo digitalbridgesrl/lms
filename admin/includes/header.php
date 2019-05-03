@@ -35,13 +35,20 @@
                                 </ul>
                             </li>
                             <li>
+                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">EDITORI<i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="add-publisher.php">Aggiungi Editori</a></li>
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="manage-publishers.php">Gestisci Editori</a></li>
+                                </ul>
+                            </li>
+                            <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">AUTORI<i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="add-author.php">Aggiungi Autori</a></li>
                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="manage-authors.php">Gestisci Autori</a></li>
                                 </ul>
                             </li>
- <li>
+                            <li>
                                 <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">LIBRI<i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="add-book.php">Aggiungi Libri</a></li>

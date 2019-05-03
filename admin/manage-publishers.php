@@ -6,19 +6,19 @@ if(strlen($_SESSION['alogin'])==0)
     {   
 header('location:index.php');
 }
-else{ 
+else{
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
-$sql = "DELETE from lms_tblbooks  WHERE id=:id";
+$sql = "DELETE from lms_tblpublishers  WHERE id=:id";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $errquery = $query -> execute();
 
 if($errquery == true){
-    $_SESSION['delmsg']="Libro cancellato correttamente.";
+    $_SESSION['delmsg']="Editore cancellato correttamente.";
 }else{
-    $_SESSION['error']="Impossibile cancellare il libro.";
+    $_SESSION['error']="Impossibile cancellare l'editore: probabilmente vi sono libri afferenti ad esso.";
 }
 
 }
@@ -31,8 +31,8 @@ if($errquery == true){
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Online Library Management System | Gestisci Libri</title>
+    <meta name="publisher" content="" />
+    <title>Online Library Management System | Gestisci Editori</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -53,7 +53,7 @@ if($errquery == true){
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Gestisci Libri</h4>
+                <h4 class="header-line">Gestisci Editori</h4>
 </div>
 <div class="row">
 <?php if($_SESSION['error']!="")
@@ -106,7 +106,7 @@ if($errquery == true){
                     <!-- Advanced Tables -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Elenco Libri
+                           Elenco Editori
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -114,16 +114,15 @@ if($errquery == true){
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Titolo</th>
-                                            <th>Categoria</th>
-                                            <th>Autore</th>
                                             <th>Editore</th>
-                                            <th>Inventario</th>
+
+                                            <th>Data di Inserimento</th>
+                                            <th>Data di Aggiornamento</th>
                                             <th>Azione</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php $sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblauthors.AuthorName,lms_tblpublishers.PublisherName,lms_tblbooks.InventoryNumber,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId left join lms_tblpublishers on lms_tblpublishers.id=lms_tblbooks.PublisherId";
+<?php $sql = "SELECT * from  lms_tblpublishers";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -134,15 +133,13 @@ foreach($results as $result)
 {               ?>                                      
                                         <tr class="odd gradeX">
                                             <td class="center"><?php echo htmlentities($cnt);?></td>
-                                            <td class="center"><?php echo htmlentities($result->BookName);?></td>
-                                            <td class="center"><?php echo htmlentities($result->CategoryName);?></td>
-                                            <td class="center"><?php echo htmlentities($result->AuthorName);?></td>
                                             <td class="center"><?php echo htmlentities($result->PublisherName);?></td>
-                                            <td class="center"><?php echo htmlentities($result->InventoryNumber);?></td>
+                                            <td class="center"><?php echo htmlentities($result->CreationDate);?></td>
+                                            <td class="center"><?php echo htmlentities($result->UpdationDate);?></td>
                                             <td class="center">
 
-                                            <a href="edit-book.php?bookid=<?php echo htmlentities($result->bookid);?>"><button class="btn btn-primary"><i class="fa fa-edit "></i>MODIFICA</button>
-                                          <a href="manage-books.php?del=<?php echo htmlentities($result->bookid);?>" onclick="return confirm('Sei sicuro di voler cancellare questo libro?');"" >  <button class="btn btn-danger"><i class="fa fa-pencil"></i>CANCELLA</button>
+                                            <a href="edit-publisher.php?pubid=<?php echo htmlentities($result->id);?>"><button class="btn btn-primary"><i class="fa fa-edit "></i>MODIFICA</button>
+                                          <a href="manage-publishers.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sei sicuro di voler cancellare questo editore?');"" >  <button class="btn btn-danger"><i class="fa fa-pencil"></i>CANCELLA</button>
                                             </td>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      

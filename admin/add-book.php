@@ -13,13 +13,15 @@ if(isset($_POST['add']))
 $bookname=$_POST['bookname'];
 $category=$_POST['category'];
 $author=$_POST['author'];
+$publisher=$_POST['publisher'];
 $isbn=$_POST['isbn'];
 $inventory=$_POST['inventory'];
-$sql="INSERT INTO  lms_tblbooks(BookName,CatId,AuthorId,ISBNNumber,InventoryNumber) VALUES(:bookname,:category,:author,:isbn,:inventory)";
+$sql="INSERT INTO  lms_tblbooks(BookName,CatId,AuthorId,PublisherId,ISBNNumber,InventoryNumber) VALUES(:bookname,:category,:author,:publisher,:isbn,:inventory)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':bookname',$bookname,PDO::PARAM_STR);
 $query->bindParam(':category',$category,PDO::PARAM_STR);
 $query->bindParam(':author',$author,PDO::PARAM_STR);
+$query->bindParam(':publisher',$publisher,PDO::PARAM_STR);
 $query->bindParam(':isbn',$isbn,PDO::PARAM_STR);
 $query->bindParam(':inventory',$inventory,PDO::PARAM_STR);
 $query->execute();
@@ -109,8 +111,7 @@ foreach($results as $result)
 <select class="form-control" name="author" required="required">
 <option value="">Seleziona Autore</option>
 <?php 
-
-$sql = "SELECT * from  lms_tblauthors ";
+$sql = "SELECT * from lms_tblauthors";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -120,9 +121,30 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>  
 <option value="<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->AuthorName);?></option>
- <?php }} ?> 
+<?php }} ?> 
 </select>
 </div>
+
+
+<div class="form-group">
+<label>Editore: <span style="color:red;">*</span></label>
+<select class="form-control" name="publisher" required="required">
+<option value="">Seleziona Editore</option>
+<?php 
+$sql = "SELECT * from lms_tblpublishers";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
+<option value="<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->PublisherName);?></option>
+<?php }} ?> 
+</select>
+</div>
+
 
 <div class="form-group">
 <label>Inventario: <span style="color:red;">*</span></label>

@@ -10,21 +10,21 @@ else{
 
 if(isset($_POST['create']))
 {
-$author=$_POST['author'];
-$sql="INSERT INTO  lms_tblauthors(AuthorName) VALUES(:author)";
+$publisher=$_POST['publisher'];
+$sql="INSERT INTO  lms_tblpublishers(PublisherName) VALUES(:publisher)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':author',$author,PDO::PARAM_STR);
+$query->bindParam(':publisher',$publisher,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-$_SESSION['msg']="L'autore è stato inserito correttamente.";
-header('location:manage-authors.php');
+$_SESSION['msg']="L'editore è stato inserito correttamente.";
+header('location:manage-publishers.php');
 }
 else 
 {
 $_SESSION['error']="Errore durante la modifica o la cancellazione. Si prega di verificare i dati inseriti.";
-header('location:manage-authors.php');
+header('location:manage-publishers.php');
 }
 
 }
@@ -35,8 +35,8 @@ header('location:manage-authors.php');
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Online Library Management System | Aggiungi Autore</title>
+    <meta name="publisher" content="" />
+    <title>Online Library Management System | Aggiungi Editore</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -56,7 +56,7 @@ header('location:manage-authors.php');
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Aggiungi Autore</h4>
+                <h4 class="header-line">Aggiungi Editore</h4>
                 
                             </div>
 
@@ -65,13 +65,13 @@ header('location:manage-authors.php');
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3"">
 <div class="panel panel-info">
 <div class="panel-heading">
-Informazioni sull'Autore
+Informazioni sull'Editore
 </div>
 <div class="panel-body">
 <form role="form" method="post">
 <div class="form-group">
-<label>Nome dell'Autore: </label>
-<input class="form-control" type="text" name="author" autocomplete="off"  required />
+<label>Editore: </label>
+<input class="form-control" type="text" name="publisher" autocomplete="off"  required />
 </div>
 
 <button type="submit" name="create" class="btn btn-info">AGGIUNGI</button>

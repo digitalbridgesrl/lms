@@ -13,14 +13,16 @@ if(isset($_POST['update']))
 $bookname=$_POST['bookname'];
 $category=$_POST['category'];
 $author=$_POST['author'];
+$publisher=$_POST['publisher'];
 $isbn=$_POST['isbn'];
 $inventory=$_POST['inventory'];
 $bookid=intval($_GET['bookid']);
-$sql="update  lms_tblbooks set BookName=:bookname,CatId=:category,AuthorId=:author,ISBNNumber=:isbn,InventoryNumber=:inventory where id=:bookid";
+$sql="update  lms_tblbooks set BookName=:bookname,CatId=:category,AuthorId=:author,PublisherId=:publisher,ISBNNumber=:isbn,InventoryNumber=:inventory where id=:bookid";
 $query = $dbh->prepare($sql);
 $query->bindParam(':bookname',$bookname,PDO::PARAM_STR);
 $query->bindParam(':category',$category,PDO::PARAM_STR);
 $query->bindParam(':author',$author,PDO::PARAM_STR);
+$query->bindParam(':publisher',$publisher,PDO::PARAM_STR);
 $query->bindParam(':isbn',$isbn,PDO::PARAM_STR);
 $query->bindParam(':inventory',$inventory,PDO::PARAM_STR);
 $query->bindParam(':bookid',$bookid,PDO::PARAM_STR);
@@ -73,7 +75,7 @@ Informazioni sul Libro
 <form role="form" method="post">
 <?php 
 $bookid=intval($_GET['bookid']);
-$sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblcategory.id as cid,lms_tblauthors.AuthorName,lms_tblauthors.id as athrid,lms_tblbooks.ISBNNumber,lms_tblbooks.InventoryNumber,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId where lms_tblbooks.id=:bookid";
+$sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblcategory.id as cid,lms_tblauthors.AuthorName,lms_tblauthors.id as athrid, lms_tblpublishers.PublisherName,lms_tblpublishers.id as pubid, lms_tblbooks.ISBNNumber,lms_tblbooks.InventoryNumber,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId left join lms_tblpublishers on lms_tblpublishers.id=lms_tblbooks.PublisherId where lms_tblbooks.id=:bookid";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':bookid',$bookid,PDO::PARAM_STR);
 $query->execute();
@@ -122,8 +124,7 @@ else
 <select class="form-control" name="author" required="required">
 <option value="<?php echo htmlentities($result->athrid);?>"> <?php echo htmlentities($athrname=$result->AuthorName);?></option>
 <?php 
-
-$sql2 = "SELECT * from  lms_tblauthors ";
+$sql2 = "SELECT * from lms_tblauthors";
 $query2 = $dbh -> prepare($sql2);
 $query2->execute();
 $result2=$query2->fetchAll(PDO::FETCH_OBJ);
@@ -135,12 +136,37 @@ if($athrname==$ret->AuthorName)
 {
 continue;
 } else{
-
-    ?>  
+?>  
 <option value="<?php echo htmlentities($ret->id);?>"><?php echo htmlentities($ret->AuthorName);?></option>
- <?php }}} ?> 
+<?php }}} ?> 
 </select>
 </div>
+
+
+<div class="form-group">
+<label>Editore: <span style="color:red;">*</span></label>
+<select class="form-control" name="publisher" required="required">
+<option value="<?php echo htmlentities($result->pubid);?>"> <?php echo htmlentities($pubname=$result->PublisherName);?></option>
+<?php 
+$sql2 = "SELECT * from lms_tblpublishers";
+$query2 = $dbh -> prepare($sql2);
+$query2->execute();
+$result2=$query2->fetchAll(PDO::FETCH_OBJ);
+if($query2->rowCount() > 0)
+{
+foreach($result2 as $ret)
+{           
+if($pubname==$ret->PublisherName)
+{
+continue;
+} else{
+?>  
+<option value="<?php echo htmlentities($ret->id);?>"><?php echo htmlentities($ret->PublisherName);?></option>
+<?php }}} ?> 
+</select>
+</div>
+
+
 
 <div class="form-group">
 <label>Inventario: <span style="color:red;">*</span></label>
