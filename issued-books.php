@@ -67,7 +67,7 @@ header('location:manage-books.php');
                                         <tr>
                                             <th>#</th>
                                             <th>Titolo</th>
-                                            <th>ISBN</th>
+                                            <th>Inventario</th>
                                             <th>Data Emissione</th>
                                             <th>Data Restituzione</th>
                                         </tr>
@@ -75,7 +75,7 @@ header('location:manage-books.php');
                                     <tbody>
 <?php 
 $sid=$_SESSION['stdid'];
-$sql="SELECT lms_tblbooks.BookName,lms_tblbooks.ISBNNumber,lms_tblissuedbookdetails.IssuesDate,lms_tblissuedbookdetails.ReturnDate,lms_tblissuedbookdetails.id as rid from  lms_tblissuedbookdetails join lms_tblstudents on lms_tblstudents.StudentId=lms_tblissuedbookdetails.StudentId join lms_tblbooks on lms_tblbooks.id=lms_tblissuedbookdetails.BookId where lms_tblstudents.StudentId=:sid order by lms_tblissuedbookdetails.id desc";
+$sql="SELECT lms_tblbooks.BookName,lms_tblbooks.InventoryNumber,lms_tblissuedbookdetails.IssuesDate,lms_tblissuedbookdetails.ReturnDate,lms_tblissuedbookdetails.id as rid from  lms_tblissuedbookdetails join lms_tblstudents on lms_tblstudents.StudentId=lms_tblissuedbookdetails.StudentId join lms_tblbooks on lms_tblbooks.id=lms_tblissuedbookdetails.BookId where lms_tblstudents.StudentId=:sid order by lms_tblissuedbookdetails.id desc";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':sid', $sid, PDO::PARAM_STR);
 $query->execute();
@@ -88,12 +88,12 @@ foreach($results as $result)
                                         <tr class="odd gradeX">
                                             <td class="center"><?php echo htmlentities($cnt);?></td>
                                             <td class="center"><?php echo htmlentities($result->BookName);?></td>
-                                            <td class="center"><?php echo htmlentities($result->ISBNNumber);?></td>
+                                            <td class="center"><?php echo htmlentities($result->InventoryNumber);?></td>
                                             <td class="center"><?php echo htmlentities($result->IssuesDate);?></td>
                                             <td class="center"><?php if($result->ReturnDate=="")
                                             {?>
                                             <span style="color:red">
-                                             <?php   echo htmlentities("Non ancora restituito"); ?>
+                                             <?php   echo htmlentities("Non Ancora Restituito"); ?>
                                                 </span>
                                             <?php } else {
                                             echo htmlentities($result->ReturnDate);

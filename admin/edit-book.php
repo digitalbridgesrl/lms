@@ -14,13 +14,15 @@ $bookname=$_POST['bookname'];
 $category=$_POST['category'];
 $author=$_POST['author'];
 $isbn=$_POST['isbn'];
+$inventory=$_POST['inventory'];
 $bookid=intval($_GET['bookid']);
-$sql="update  lms_tblbooks set BookName=:bookname,CatId=:category,AuthorId=:author,ISBNNumber=:isbn where id=:bookid";
+$sql="update  lms_tblbooks set BookName=:bookname,CatId=:category,AuthorId=:author,ISBNNumber=:isbn,InventoryNumber=:inventory where id=:bookid";
 $query = $dbh->prepare($sql);
 $query->bindParam(':bookname',$bookname,PDO::PARAM_STR);
 $query->bindParam(':category',$category,PDO::PARAM_STR);
 $query->bindParam(':author',$author,PDO::PARAM_STR);
 $query->bindParam(':isbn',$isbn,PDO::PARAM_STR);
+$query->bindParam(':inventory',$inventory,PDO::PARAM_STR);
 $query->bindParam(':bookid',$bookid,PDO::PARAM_STR);
 $query->execute();
 $_SESSION['msg']="Il libro è stato modificato correttamente.";
@@ -71,7 +73,7 @@ Informazioni sul Libro
 <form role="form" method="post">
 <?php 
 $bookid=intval($_GET['bookid']);
-$sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblcategory.id as cid,lms_tblauthors.AuthorName,lms_tblauthors.id as athrid,lms_tblbooks.ISBNNumber,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId where lms_tblbooks.id=:bookid";
+$sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblcategory.id as cid,lms_tblauthors.AuthorName,lms_tblauthors.id as athrid,lms_tblbooks.ISBNNumber,lms_tblbooks.InventoryNumber,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId where lms_tblbooks.id=:bookid";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':bookid',$bookid,PDO::PARAM_STR);
 $query->execute();
@@ -138,6 +140,12 @@ continue;
 <option value="<?php echo htmlentities($ret->id);?>"><?php echo htmlentities($ret->AuthorName);?></option>
  <?php }}} ?> 
 </select>
+</div>
+
+<div class="form-group">
+<label>Inventario: <span style="color:red;">*</span></label>
+<input class="form-control" type="text" name="inventory" value="<?php echo htmlentities($result->InventoryNumber);?>"  required="required" />
+<p class="help-block">Inserire il numero di inventario.</p>
 </div>
 
 <div class="form-group">

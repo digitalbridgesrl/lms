@@ -145,8 +145,9 @@ foreach($results as $result)
 <div class="form-group">
 <label>Data Restituzione: </label>
 <?php if($result->ReturnDate=="")
-                                            {
-                                                echo htmlentities("Non Ancora Restituito");
+                                            { ?>
+                                            <span style="color:red"><?php   echo htmlentities("Non Ancora Restituito"); ?></span>
+                                            <?php
                                             } else {
 
 

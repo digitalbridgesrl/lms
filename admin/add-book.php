@@ -14,12 +14,14 @@ $bookname=$_POST['bookname'];
 $category=$_POST['category'];
 $author=$_POST['author'];
 $isbn=$_POST['isbn'];
-$sql="INSERT INTO  lms_tblbooks(BookName,CatId,AuthorId,ISBNNumber) VALUES(:bookname,:category,:author,:isbn)";
+$inventory=$_POST['inventory'];
+$sql="INSERT INTO  lms_tblbooks(BookName,CatId,AuthorId,ISBNNumber,InventoryNumber) VALUES(:bookname,:category,:author,:isbn,:inventory)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':bookname',$bookname,PDO::PARAM_STR);
 $query->bindParam(':category',$category,PDO::PARAM_STR);
 $query->bindParam(':author',$author,PDO::PARAM_STR);
 $query->bindParam(':isbn',$isbn,PDO::PARAM_STR);
+$query->bindParam(':inventory',$inventory,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
@@ -120,6 +122,12 @@ foreach($results as $result)
 <option value="<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->AuthorName);?></option>
  <?php }} ?> 
 </select>
+</div>
+
+<div class="form-group">
+<label>Inventario: <span style="color:red;">*</span></label>
+<input class="form-control" type="text" name="inventory"  required="required" autocomplete="off"  />
+<p class="help-block">Indicare il numero di inventario.</p>
 </div>
 
 <div class="form-group">

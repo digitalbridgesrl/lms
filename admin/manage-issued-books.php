@@ -95,14 +95,14 @@ else{
                                             <th>#</th>
                                             <th>Studente</th>
                                             <th>Titolo del Libro</th>
-                                            <th>ISBN</th>
+                                            <th>Inventario</th>
                                             <th>Data Prestito</th>
                                             <th>Data Restituzione</th>
                                             <th>Azione</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php $sql = "SELECT lms_tblstudents.FullName,lms_tblbooks.BookName,lms_tblbooks.ISBNNumber,lms_tblissuedbookdetails.IssuesDate,lms_tblissuedbookdetails.ReturnDate,lms_tblissuedbookdetails.id as rid from  lms_tblissuedbookdetails join lms_tblstudents on lms_tblstudents.StudentId=lms_tblissuedbookdetails.StudentId join lms_tblbooks on lms_tblbooks.id=lms_tblissuedbookdetails.BookId order by lms_tblissuedbookdetails.id desc";
+<?php $sql = "SELECT lms_tblstudents.FullName,lms_tblbooks.BookName,lms_tblbooks.InventoryNumber,lms_tblissuedbookdetails.IssuesDate,lms_tblissuedbookdetails.ReturnDate,lms_tblissuedbookdetails.id as rid from  lms_tblissuedbookdetails join lms_tblstudents on lms_tblstudents.StudentId=lms_tblissuedbookdetails.StudentId join lms_tblbooks on lms_tblbooks.id=lms_tblissuedbookdetails.BookId order by lms_tblissuedbookdetails.id desc";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -115,16 +115,14 @@ foreach($results as $result)
                                             <td class="center"><?php echo htmlentities($cnt);?></td>
                                             <td class="center"><?php echo htmlentities($result->FullName);?></td>
                                             <td class="center"><?php echo htmlentities($result->BookName);?></td>
-                                            <td class="center"><?php echo htmlentities($result->ISBNNumber);?></td>
+                                            <td class="center"><?php echo htmlentities($result->InventoryNumber);?></td>
                                             <td class="center"><?php echo htmlentities($result->IssuesDate);?></td>
                                             <td class="center"><?php if($result->ReturnDate=="")
-                                            {
-                                                echo htmlentities("Non Ancora Restituito");
-                                            } else {
-
-
+                                            { ?>
+                                            <span style="color:red"><?php   echo htmlentities("Non Ancora Restituito"); ?></span>
+                                            <?php } else {
                                             echo htmlentities($result->ReturnDate);
-}
+                                            }
                                             ?></td>
                                             <td class="center">
 
