@@ -11,15 +11,21 @@ else{
 if(isset($_POST['update']))
 {
 $bookname=$_POST['bookname'];
+$booksubtitle=$_POST['booksubtitle'];
+$volume=$_POST['volume'];
+$totvolume=$_POST['totvolume'];
 $category=$_POST['category'];
 $author=$_POST['author'];
 $publisher=$_POST['publisher'];
 $isbn=$_POST['isbn'];
 $inventory=$_POST['inventory'];
 $bookid=intval($_GET['bookid']);
-$sql="update  lms_tblbooks set BookName=:bookname,CatId=:category,AuthorId=:author,PublisherId=:publisher,ISBNNumber=:isbn,InventoryNumber=:inventory where id=:bookid";
+$sql="update  lms_tblbooks set BookName=:bookname,BookSubtitle=:booksubtitle,Volume=:volume,TotVolume=:totvolume,CatId=:category,AuthorId=:author,PublisherId=:publisher,ISBNNumber=:isbn,InventoryNumber=:inventory where id=:bookid";
 $query = $dbh->prepare($sql);
 $query->bindParam(':bookname',$bookname,PDO::PARAM_STR);
+$query->bindParam(':booksubtitle',$booksubtitle,PDO::PARAM_STR);
+$query->bindParam(':volume',$volume,PDO::PARAM_STR);
+$query->bindParam(':totvolume',$totvolume,PDO::PARAM_STR);
 $query->bindParam(':category',$category,PDO::PARAM_STR);
 $query->bindParam(':author',$author,PDO::PARAM_STR);
 $query->bindParam(':publisher',$publisher,PDO::PARAM_STR);
@@ -75,7 +81,7 @@ Informazioni sul Libro
 <form role="form" method="post">
 <?php 
 $bookid=intval($_GET['bookid']);
-$sql = "SELECT lms_tblbooks.BookName,lms_tblcategory.CategoryName,lms_tblcategory.id as cid,lms_tblauthors.AuthorName,lms_tblauthors.id as athrid, lms_tblpublishers.PublisherName,lms_tblpublishers.id as pubid, lms_tblbooks.ISBNNumber,lms_tblbooks.InventoryNumber,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId left join lms_tblpublishers on lms_tblpublishers.id=lms_tblbooks.PublisherId where lms_tblbooks.id=:bookid";
+$sql = "SELECT lms_tblbooks.BookName,lms_tblbooks.BookSubtitle,lms_tblbooks.Volume,lms_tblbooks.TotVolume,lms_tblcategory.CategoryName,lms_tblcategory.id as cid,lms_tblauthors.AuthorName,lms_tblauthors.id as athrid, lms_tblpublishers.PublisherName,lms_tblpublishers.id as pubid, lms_tblbooks.ISBNNumber,lms_tblbooks.InventoryNumber,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId left join lms_tblpublishers on lms_tblpublishers.id=lms_tblbooks.PublisherId where lms_tblbooks.id=:bookid";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':bookid',$bookid,PDO::PARAM_STR);
 $query->execute();
@@ -86,10 +92,47 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>  
 
+<table>
+    <tr>
+        <td>
+
 <div class="form-group">
 <label>Titolo: <span style="color:red;">*</span></label>
 <input class="form-control" type="text" name="bookname" value="<?php echo htmlentities($result->BookName);?>" required />
 </div>
+
+</td>
+<td>
+
+<div class="form-group">
+<label>Sottotitolo: </label>
+<input class="form-control" type="text" name="booksubtitle" value="<?php echo htmlentities($result->BookSubtitle);?>" />
+</div>
+
+</td>
+</tr>
+
+<tr>
+    <td>
+
+<div class="form-group">
+<label>Volume: </label>
+<input class="form-control" type="text" name="volume" value="<?php echo htmlentities($result->Volume);?>" />
+</div>
+
+</td>
+<td>
+
+<div class="form-group">
+<label>Volumi: </label>
+<input class="form-control" type="text" name="totvolume" value="<?php echo htmlentities($result->TotVolume);?>" />
+</div>
+
+</td>
+</tr>
+
+<tr>
+    <td colspan="2">
 
 <div class="form-group">
 <label>Categoria: <span style="color:red;">*</span></label>
@@ -118,6 +161,10 @@ else
 </select>
 </div>
 
+</td>
+
+<tr>
+    <td>
 
 <div class="form-group">
 <label>Autore: <span style="color:red;">*</span></label>
@@ -142,6 +189,8 @@ continue;
 </select>
 </div>
 
+</td>
+<td>
 
 <div class="form-group">
 <label>Editore: <span style="color:red;">*</span></label>
@@ -167,18 +216,27 @@ continue;
 </div>
 
 
+</td>
+</tr>
+<tr valign="top">
+    <td>
 
 <div class="form-group">
 <label>Inventario: <span style="color:red;">*</span></label>
 <input class="form-control" type="text" name="inventory" value="<?php echo htmlentities($result->InventoryNumber);?>"  required="required" />
-<p class="help-block">Inserire il numero di inventario.</p>
 </div>
+
+</td>
+<td>
 
 <div class="form-group">
 <label>ISBN: <span style="color:red;">*</span></label>
 <input class="form-control" type="text" name="isbn" value="<?php echo htmlentities($result->ISBNNumber);?>"  required="required" />
-<p class="help-block">Inserire il codice che identifica univocamente il libro.</p>
 </div>
+
+</td>
+</tr>
+</table>
 
  <?php }} ?>
 <button type="submit" name="update" class="btn btn-info">AGGIORNA</button>

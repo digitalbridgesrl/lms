@@ -117,6 +117,9 @@ INSERT INTO `lms_tblcategory` (`id`, `CategoryName`, `Status`, `CreationDate`, `
 CREATE TABLE `lms_tblbooks` (
   `id` int(11) NOT NULL,
   `BookName` varchar(255) DEFAULT NULL,
+  `BookSubtitle` varchar(255) DEFAULT NULL,
+  `Volume` varchar(255) DEFAULT NULL,
+  `TotVolume` varchar(255) DEFAULT NULL,
   `CatId` int(11) DEFAULT NULL,
   `AuthorId` int(11) DEFAULT NULL,
   `PublisherId` int(11) DEFAULT NULL,

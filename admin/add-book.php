@@ -11,14 +11,20 @@ else{
 if(isset($_POST['add']))
 {
 $bookname=$_POST['bookname'];
+$booksubtitle=$_POST['booksubtitle'];
+$volume=$_POST['volume'];
+$totvolume=$_POST['totvolume'];
 $category=$_POST['category'];
 $author=$_POST['author'];
 $publisher=$_POST['publisher'];
 $isbn=$_POST['isbn'];
 $inventory=$_POST['inventory'];
-$sql="INSERT INTO  lms_tblbooks(BookName,CatId,AuthorId,PublisherId,ISBNNumber,InventoryNumber) VALUES(:bookname,:category,:author,:publisher,:isbn,:inventory)";
+$sql="INSERT INTO  lms_tblbooks(BookName,BookSubtitle,Volume,TotVolume,CatId,AuthorId,PublisherId,ISBNNumber,InventoryNumber) VALUES(:bookname,:booksubtitle,:volume,:totvolume,:category,:author,:publisher,:isbn,:inventory)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':bookname',$bookname,PDO::PARAM_STR);
+$query->bindParam(':booksubtitle',$booksubtitle,PDO::PARAM_STR);
+$query->bindParam(':volume',$volume,PDO::PARAM_STR);
+$query->bindParam(':totvolume',$totvolume,PDO::PARAM_STR);
 $query->bindParam(':category',$category,PDO::PARAM_STR);
 $query->bindParam(':author',$author,PDO::PARAM_STR);
 $query->bindParam(':publisher',$publisher,PDO::PARAM_STR);
@@ -77,12 +83,53 @@ header('location:manage-books.php');
 <div class="panel-heading">
 Informazioni sul Libro
 </div>
+
+
+
 <div class="panel-body">
 <form role="form" method="post">
+
+<table>
+    <tr>
+        <td>
+
 <div class="form-group">
 <label>Titolo: <span style="color:red;">*</span></label>
 <input class="form-control" type="text" name="bookname" autocomplete="off"  required />
 </div>
+
+</td>
+<td>
+
+<div class="form-group">
+<label>Sottotitolo: </label>
+<input class="form-control" type="text" name="booksubtitle" autocomplete="off" />
+</div>
+
+</td>
+</tr>
+
+<tr>
+    <td>
+
+<div class="form-group">
+<label>Volume: </label>
+<input class="form-control" type="text" name="volume" autocomplete="off" />
+</div>
+
+</td>
+<td>
+
+<div class="form-group">
+<label>Volumi: </label>
+<input class="form-control" type="text" name="totvolume" autocomplete="off" />
+</div>
+
+</td>
+</tr>
+
+<tr>
+    <td colspan="2">
 
 <div class="form-group">
 <label>Categoria: <span style="color:red;">*</span></label>
@@ -105,6 +152,10 @@ foreach($results as $result)
 </select>
 </div>
 
+</td>
+
+<tr>
+    <td>
 
 <div class="form-group">
 <label>Autore: <span style="color:red;">*</span></label>
@@ -125,6 +176,8 @@ foreach($results as $result)
 </select>
 </div>
 
+</td>
+<td>
 
 <div class="form-group">
 <label>Editore: <span style="color:red;">*</span></label>
@@ -145,18 +198,28 @@ foreach($results as $result)
 </select>
 </div>
 
+</td>
+</tr>
+
+<tr valign="top">
+    <td>
 
 <div class="form-group">
 <label>Inventario: <span style="color:red;">*</span></label>
-<input class="form-control" type="text" name="inventory"  required="required" autocomplete="off"  />
-<p class="help-block">Indicare il numero di inventario.</p>
+<input class="form-control" type="text" name="inventory" required="required" autocomplete="off"  />
 </div>
+
+</td>
+<td>
 
 <div class="form-group">
 <label>ISBN: <span style="color:red;">*</span></label>
-<input class="form-control" type="text" name="isbn"  required="required" autocomplete="off"  />
-<p class="help-block">Indicare il codice che identifica univocamente il libro.</p>
+<input class="form-control" type="text" name="isbn" required="required" autocomplete="off"  />
 </div>
+
+</td>
+</tr>
+</table>
 
 <button type="submit" name="add" class="btn btn-info">AGGIUNGI</button>
 
