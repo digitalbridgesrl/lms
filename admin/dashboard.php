@@ -48,67 +48,68 @@ else{?>
                       <div class="alert alert-success back-widget-set text-center">
                             <i class="fa fa-book fa-5x"></i>
 <?php 
-$sql ="SELECT id from lms_tblbooks ";
+$sql ="SELECT count(*) as tot from lms_tblbooks ";
 $query = $dbh -> prepare($sql);
 $query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$listdbooks=$query->rowCount();
+$results=$query->fetch(PDO::FETCH_OBJ);
+$listdbooks=$results->tot;
 ?>
 
 
                             <h3><?php echo htmlentities($listdbooks);?></h3>
-                      Libri in Banca Dati
+                      Libri
                         </div>
                     </div>
 
             
-                 <div class="col-md-3 col-sm-3 col-xs-6">
-                      <div class="alert alert-info back-widget-set text-center">
-                            <i class="fa fa-bars fa-5x"></i>
+<div class="col-md-3 col-sm-3 col-xs-6">
+                      <div class="alert alert-warning back-widget-set text-center">
+                            <i class="fa fa-recycle fa-5x"></i>
 <?php 
-$sql1 ="SELECT id from lms_tblissuedbookdetails ";
+$sql1 ="SELECT count(*) as tot from lms_tblissuedbookdetails where ReturnDate is null";
 $query1 = $dbh -> prepare($sql1);
 $query1->execute();
-$results1=$query1->fetchAll(PDO::FETCH_OBJ);
-$issuedbooks=$query1->rowCount();
+$results1=$query1->fetch(PDO::FETCH_OBJ);
+$issuedbooks=$results1->tot;
 ?>
 
                             <h3><?php echo htmlentities($issuedbooks);?> </h3>
-                           Numero Prestiti
+                           Libri in prestito
                         </div>
                     </div>
              
                <div class="col-md-3 col-sm-3 col-xs-6">
-                      <div class="alert alert-warning back-widget-set text-center">
-                            <i class="fa fa-recycle fa-5x"></i>
+                      <div class="alert alert-info back-widget-set text-center">
+                            <i class="fa fa-sort-amount-asc fa-5x"></i>
 <?php 
 $status=1;
-$sql2 ="SELECT id from lms_tblissuedbookdetails where RetrunStatus=:status";
+$sql2 ="SELECT count(*) as tot from lms_tblissuedbookdetails";
 $query2 = $dbh -> prepare($sql2);
-$query2->bindParam(':status',$status,PDO::PARAM_STR);
 $query2->execute();
-$results2=$query2->fetchAll(PDO::FETCH_OBJ);
-$returnedbooks=$query2->rowCount();
+$results2=$query2->fetch(PDO::FETCH_OBJ);
+$returnedbooks=$results2->tot;
 ?>
 
                             <h3><?php echo htmlentities($returnedbooks);?></h3>
-                          Numero Restituzioni
+                          Prestiti totali
                         </div>
                     </div>
-               <div class="col-md-3 col-sm-3 col-xs-6">
-                      <div class="alert alert-danger back-widget-set text-center">
+               
+<div class="col-md-3 col-sm-3 col-xs-6">
+                      <div class="alert alert-success back-widget-set text-center">
                             <i class="fa fa-users fa-5x"></i>
                             <?php 
-$sql3 ="SELECT id from lms_tblstudents ";
-$query3 = $dbh -> prepare($sql1);
+$sql3 ="SELECT count(*) as tot from lms_tblstudents";
+$query3 = $dbh -> prepare($sql3);
 $query3->execute();
-$results3=$query3->fetchAll(PDO::FETCH_OBJ);
-$regstds=$query3->rowCount();
+$results3=$query3->fetch(PDO::FETCH_OBJ);
+$regstds=$results3->tot;
 ?>
                             <h3><?php echo htmlentities($regstds);?></h3>
-                           Utenti in Banca Dati
+                           Studenti
                         </div>
                     </div>
+                  
 
         </div>
 
@@ -116,47 +117,64 @@ $regstds=$query3->rowCount();
 
  <div class="row">
 
- <div class="col-md-3 col-sm-3 col-xs-6">
-                      <div class="alert alert-success back-widget-set text-center">
-                            <i class="fa fa-user fa-5x"></i>
+ <div class="col-md-4 col-sm-3 col-xs-6">
+                      <div class="alert alert-info back-widget-set text-center">
+                            <i class="fa fa-group fa-5x"></i>
 <?php 
-$sq4 ="SELECT id from lms_tblauthors ";
-$query4 = $dbh -> prepare($sql);
+$sql4 ="SELECT count(*) as tot from lms_tblauthors";
+$query4 = $dbh -> prepare($sql4);
 $query4->execute();
-$results4=$query4->fetchAll(PDO::FETCH_OBJ);
-$listdathrs=$query4->rowCount();
+$results4=$query4->fetch(PDO::FETCH_OBJ);
+$listdathrs=$results4->tot;
 ?>
 
 
                             <h3><?php echo htmlentities($listdathrs);?></h3>
-                      Autori in Banca Dati
+                      Autori
                         </div>
                     </div>
 
             
-                 <div class="col-md-3 col-sm-3 rscol-xs-6">
+<div class="col-md-4 col-sm-3 rscol-xs-6">
                       <div class="alert alert-info back-widget-set text-center">
-                            <i class="fa fa-file-archive-o fa-5x"></i>
+                            <i class="fa fa-th-large fa-5x"></i>
 <?php 
-$sql5 ="SELECT id from lms_tblcategory ";
-$query5 = $dbh -> prepare($sql1);
+$sql5 ="SELECT count(*) as tot from lms_tblcategory";
+$query5 = $dbh -> prepare($sql5);
 $query5->execute();
-$results5=$query5->fetchAll(PDO::FETCH_OBJ);
-$listdcats=$query5->rowCount();
+$results5=$query5->fetch(PDO::FETCH_OBJ);
+$listdcats=$results5->tot;
 ?>
 
                             <h3><?php echo htmlentities($listdcats);?> </h3>
-                           Categorie in Banca Dati
+                           Categorie
                         </div>
                     </div>
              
 
-        </div>             
+                   
 
 
+<div class="col-md-4 col-sm-3 rscol-xs-6">
+                      <div class="alert alert-info back-widget-set text-center">
+                            <i class="fa fa-home fa-5x"></i>
+<?php 
+$sql6 ="SELECT count(*) as tot from lms_tblpublishers";
+$query6 = $dbh -> prepare($sql6);
+$query6->execute();
+$results6=$query6->fetch(PDO::FETCH_OBJ);
+$listdpubs=$results6->tot;
+?>
+                            <h3><?php echo htmlentities($listdpubs);?> </h3>
+                           Editori
+                        </div>
+                    </div>
+             
+
+        </div>
 
 
-
+ </div>
 
 
 
