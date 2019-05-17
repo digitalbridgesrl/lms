@@ -102,7 +102,7 @@ else{
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php $sql = "SELECT lms_tblstudents.FullName,lms_tblbooks.BookName,lms_tblbooks.InventoryNumber,lms_tblissuedbookdetails.IssuesDate,lms_tblissuedbookdetails.ReturnDate,lms_tblissuedbookdetails.id as rid from  lms_tblissuedbookdetails join lms_tblstudents on lms_tblstudents.StudentId=lms_tblissuedbookdetails.StudentId join lms_tblbooks on lms_tblbooks.id=lms_tblissuedbookdetails.BookId order by lms_tblissuedbookdetails.id desc";
+<?php $sql = "SELECT lms_tblstudents.FullName,lms_tblbooks.BookName,lms_tblbooks.InventoryNumber,lms_tblissuedbookdetails.IssuesDate,lms_tblissuedbookdetails.ReturnDate,lms_tblissuedbookdetails.id as rid from  lms_tblissuedbookdetails left join lms_tblstudents on lms_tblstudents.StudentId=lms_tblissuedbookdetails.StudentId left join lms_tblbooks on lms_tblbooks.id=lms_tblissuedbookdetails.BookId order by lms_tblissuedbookdetails.id desc";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
