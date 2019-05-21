@@ -157,15 +157,15 @@ CREATE TABLE `lms_tblissuedbookdetails` (
   `BookId` int(11) DEFAULT NULL,
   `StudentID` varchar(150) DEFAULT NULL,
   `IssuesDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `ReturnDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `RetrunStatus` int(1) DEFAULT 0,
+  `ReturnDate` timestamp NULL DEFAULT NULL,
+  `ReturnStatus` int(1) DEFAULT 0,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lms_tblissuedbookdetails`
 --
 
-INSERT INTO `lms_tblissuedbookdetails` (`id`, `BookId`, `StudentID`, `IssuesDate`, `ReturnDate`, `RetrunStatus`) VALUES
+INSERT INTO `lms_tblissuedbookdetails` (`id`, `BookId`, `StudentID`, `IssuesDate`, `ReturnDate`, `ReturnStatus`) VALUES
 (1, 1, 'SID002', '2017-07-15 06:09:47', '2017-07-15 11:15:20', 1),
 (2, 1, 'SID002', '2017-07-15 06:12:27', '2017-07-15 11:15:23', 1),
 (3, 3, 'SID002', '2017-07-15 06:13:40', NULL, 0),

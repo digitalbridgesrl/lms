@@ -11,14 +11,17 @@ else{
 if(isset($_POST['return']))
 {
 $rid=intval($_GET['rid']);
+$rdate=$_POST['rdate'];
+
 $rstatus=1;
-$sql="update lms_tblissuedbookdetails set RetrunStatus=:rstatus where id=:rid";
+$sql="update lms_tblissuedbookdetails set ReturnStatus=:rstatus, ReturnDate=:rdate where id=:rid";
 $query = $dbh->prepare($sql);
 $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 $query->bindParam(':rstatus',$rstatus,PDO::PARAM_STR);
+$query->bindParam(':rdate',$rdate,PDO::PARAM_STR);
 $query->execute();
 
-$_SESSION['msg']="Book Returned successfully";
+$_SESSION['msg']="Libro restituito correttamente.";
 header('location:manage-issued-books.php');
 
 
@@ -39,8 +42,28 @@ header('location:manage-issued-books.php');
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/datetimepicker.css" rel="stylesheet" />
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+    <!-- DATETIME PICKER -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment-with-locales.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready( function () {
+        $('#picker').dateTimePicker({
+          selectData: "now",
+          showTime: true,
+          locale: "it",
+          dateFormat: "YYYY-MM-DD HH:mm",
+          dateStart: "2019/01/01",
+          positionShift: { top: -300, left: 150},
+          title: "Seleziona la data di restituzione",
+          buttonTitle: "OK"
+        });    });
+    </script>
+
 <script>
 // function for get student name
 function getstudent() {
@@ -106,7 +129,7 @@ Dettaglio Libro in Prestito
 <form role="form" method="post">
 <?php 
 $rid=intval($_GET['rid']);
-$sql = "SELECT lms_tblstudents.FullName,lms_tblbooks.BookName,lms_tblbooks.ISBNNumber,lms_tblissuedbookdetails.IssuesDate,lms_tblissuedbookdetails.ReturnDate,lms_tblissuedbookdetails.id as rid,lms_tblissuedbookdetails.RetrunStatus from  lms_tblissuedbookdetails join lms_tblstudents on lms_tblstudents.StudentId=lms_tblissuedbookdetails.StudentId join lms_tblbooks on lms_tblbooks.id=lms_tblissuedbookdetails.BookId where lms_tblissuedbookdetails.id=:rid";
+$sql = "SELECT lms_tblstudents.FullName,lms_tblbooks.BookName,lms_tblbooks.ISBNNumber,lms_tblissuedbookdetails.IssuesDate,lms_tblissuedbookdetails.ReturnDate,lms_tblissuedbookdetails.id as rid,lms_tblissuedbookdetails.ReturnStatus from  lms_tblissuedbookdetails join lms_tblstudents on lms_tblstudents.StudentId=lms_tblissuedbookdetails.StudentId join lms_tblbooks on lms_tblbooks.id=lms_tblissuedbookdetails.BookId where lms_tblissuedbookdetails.id=:rid";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':rid',$rid,PDO::PARAM_STR);
 $query->execute();
@@ -144,27 +167,37 @@ foreach($results as $result)
 
 <div class="form-group">
 <label>Data Restituzione: </label>
-<?php if($result->ReturnDate=="")
-                                            { ?>
-                                            <span style="color:red"><?php   echo htmlentities("Non Ancora Restituito"); ?></span>
-                                            <?php
-                                            } else {
-
-
-                                            echo htmlentities($result->ReturnDate);
-}
-                                            ?>
+<?php if($result->ReturnDate==""){ ?>
+            <span style="color:red"><?php   echo htmlentities("Non Ancora Restituito"); ?></span>
+<?php
+        } else {
+            echo htmlentities($result->ReturnDate);
+        }
+?>
 </div>
 
 <div class="form-group">
- <?php if($result->RetrunStatus==0){?>
+<label>Nuova Data Restituzione: </label> <div style="display: inline-block;" id="picker"> </div>
+    <input type="hidden" name="rdate" id="rdate" value="" />
+    <script>
+        var now = moment().format('YYYY/MM/DD hh:mm');
+        document.getElementById("rdate").value = now;
+    </script>
+</div>
 
-<button type="submit" name="return" id="submit" class="btn btn-info">RESTITUZIONE</button>
 
- </div>
+<div class="form-group">
+<?php if($result->ReturnStatus==0){ ?>
+    <button type="submit" name="return" id="submit" class="btn btn-info">RESTITUZIONE</button>
+<?php } else { ?>
+    <button type="submit" name="return" id="submit" class="btn btn-warning">AGGIORNA</button>
+    <a href="manage-issued-books.php" class="btn btn-info">NON AGGIORNARE</a>
+<?php   }  ?>
+</div>
 
-<?php }}} ?>
-                                    </form>
+<?php }} ?>
+
+</form>
                             </div>
                         </div>
                             </div>
@@ -177,12 +210,15 @@ foreach($results as $result)
   <?php include('includes/footer.php');?>
       <!-- FOOTER SECTION END-->
     <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
-    <!-- CORE JQUERY  -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
-      <!-- CUSTOM SCRIPTS  -->
+    <!-- CUSTOM SCRIPTS  -->
     <script src="assets/js/custom.js"></script>
+    <!-- MOMENT SCRIPTS  -->
+    <script src="assets/js/moment.js"></script>
+    <!-- DATETIMEPICKER SCRIPTS  -->
+    <script src="assets/js/datetimepicker.js"></script>
+
 
 </body>
 </html>

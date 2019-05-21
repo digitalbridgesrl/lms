@@ -49,7 +49,7 @@ else{?>
                             <i class="fa fa-bars fa-5x"></i>
 <?php 
 $sid=$_SESSION['stdid'];
-$sql1 ="SELECT id from lms_tblissuedbookdetails where StudentID=:sid and RetrunStatus=1";
+$sql1 ="SELECT id from lms_tblissuedbookdetails where StudentID=:sid and ReturnStatus=1";
 $query1 = $dbh -> prepare($sql1);
 $query1->bindParam(':sid',$sid,PDO::PARAM_STR);
 $query1->execute();
@@ -66,7 +66,7 @@ $issuedbooks=$query1->rowCount();
                       <div class="alert alert-warning back-widget-set text-center">
                             <i class="fa fa-recycle fa-5x"></i>
 <?php 
-$sql2 ="SELECT id from lms_tblissuedbookdetails where StudentID=:sid and RetrunStatus=0";
+$sql2 ="SELECT id from lms_tblissuedbookdetails where StudentID=:sid and ReturnStatus=0";
 $query2 = $dbh -> prepare($sql2);
 $query2->bindParam(':sid',$sid,PDO::PARAM_STR);
 $query2->execute();
