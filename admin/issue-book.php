@@ -92,60 +92,54 @@ error:function (){}
       <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-    <div class="content-wra
     <div class="content-wrapper">
-         <div class="container">
+        <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
                 <h4 class="header-line">Nuovo Prestito</h4>
-                
-                            </div>
+            </div>
 
 </div>
+
 <div class="row">
-<div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-1"">
+
+<div class="col-md-10 col-sm-6 col-xs-12 col-md-offset-1">
 <div class="panel panel-info">
+
 <div class="panel-heading">
 Inserisci le informazioni richieste per registrare il prestito
 </div>
+
 <div class="panel-body">
+
 <form role="form" method="post">
 
 <div class="form-group">
 <label>ID Studente: <span style="color:red;">*</span></label>
-<input class="form-control" type="text" name="studentid" id="studentid" onBlur="getstudent()" autocomplete="off"  required />
+<input class="form-control" type="text" name="studentid" id="studentid" onkeyup="getstudent()" autocomplete="off"  required="required" />
+<div id="get_student_name" style="font-size:16px;"></div> 
 </div>
-
-<div class="form-group">
-<span id="get_student_name" style="font-size:16px;"></span> 
-</div>
-
-
-
-
 
 <div class="form-group">
 <label>Codice ISBN: <span style="color:red;">*</span></label>
-<input class="form-control" type="text" name="booikid" id="bookid" onBlur="getbook()"  required="required" />
+<input class="form-control" type="text" name="booikid" id="bookid" onkeyup="getbook()" autocomplete="off" required="required" />
 </div>
 
- <div class="form-group">
+<div class="form-group">
+<select  class="form-control" name="bookdetails" id="get_book_name" readonly></select>
+</div>
 
-  <select  class="form-control" name="bookdetails" id="get_book_name" readonly>
-   
- </select>
- </div>
 <button type="submit" name="issue" id="submit" class="btn btn-info">CONFERMA</button>
 
-                                    </form>
-                            </div>
-                        </div>
-                            </div>
+</form>
 
-        </div>
-   
-    </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
      <!-- CONTENT-WRAPPER SECTION END-->
   <?php include('includes/footer.php');?>
       <!-- FOOTER SECTION END-->
