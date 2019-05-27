@@ -58,7 +58,7 @@ header('location:manage-categories.php');
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Add category</h4>
+                <h4 class="header-line">Aggiungi Categoria</h4>
                 
                             </div>
 
@@ -89,7 +89,10 @@ Informazioni sulla Categoria
 </div>
 
 </div>
+<div align="center">
 <button type="submit" name="create" class="btn btn-info">AGGIUNGI</button>
+<a href="dashboard.php" class="btn btn-warning">ANNULLA</a>
+</div>
 
                                     </form>
                             </div>

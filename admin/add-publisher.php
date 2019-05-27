@@ -74,8 +74,10 @@ Informazioni sull'Editore
 <input class="form-control" type="text" name="publisher" autocomplete="off"  required />
 </div>
 
+<div align="center">
 <button type="submit" name="create" class="btn btn-info">AGGIUNGI</button>
-
+<a href="dashboard.php" class="btn btn-warning">ANNULLA</a>
+</div>
                                     </form>
                             </div>
                         </div>

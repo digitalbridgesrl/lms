@@ -221,7 +221,10 @@ foreach($results as $result)
 </tr>
 </table>
 
+<div align="center">
 <button type="submit" name="add" class="btn btn-info">AGGIUNGI</button>
+<a href="dashboard.php" class="btn btn-warning">ANNULLA</a>
+</div>
 
                                     </form>
                             </div>

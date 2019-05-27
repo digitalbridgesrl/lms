@@ -107,7 +107,7 @@ error:function (){}
 <div class="panel panel-info">
 
 <div class="panel-heading">
-Inserisci le informazioni richieste per registrare il prestito
+Inserire le informazioni richieste per registrare il prestito
 </div>
 
 <div class="panel-body">
@@ -129,7 +129,10 @@ Inserisci le informazioni richieste per registrare il prestito
 <select  class="form-control" name="bookdetails" id="get_book_name" readonly></select>
 </div>
 
+<div align="center">
 <button type="submit" name="issue" id="submit" class="btn btn-info">CONFERMA</button>
+<a href="dashboard.php" class="btn btn-warning">ANNULLA</a>
+</div>
 
 </form>
 
