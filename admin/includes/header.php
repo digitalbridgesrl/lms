@@ -63,7 +63,12 @@
                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="manage-issued-books.php">Gestisci Prestiti</a></li>
                                 </ul>
                             </li>
-                             <li><a href="reg-students.php">STUDENTI</a></li>
+                             <li><a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">STUDENTI<i class="fa fa-angle-down"></i></a>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="add-student.php">Aggiungi Studenti</a></li>
+                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="manage-students.php">Gestisci Studenti</a></li>
+                                </ul>
+                            </li>
                     
   <li><a href="change-password.php">Cambio Password</a></li>
                         </ul>

@@ -71,6 +71,49 @@ header('location:reg-students.php');
 
 
         </div>
+<div class="row">
+<?php if($_SESSION['error']!="")
+{?>
+<div class="col-md-6">
+<div class="alert alert-danger" >
+<strong>ERRORE: </strong> 
+<?php echo htmlentities($_SESSION['error']);?>
+<?php echo htmlentities($_SESSION['error']="");?>
+</div>
+</div>
+<?php } ?>
+<?php if($_SESSION['msg']!="")
+{?>
+<div class="col-md-6">
+<div class="alert alert-success" >
+<strong>OK: </strong> 
+<?php echo htmlentities($_SESSION['msg']);?>
+<?php echo htmlentities($_SESSION['msg']="");?>
+</div>
+</div>
+<?php } ?>
+<?php if($_SESSION['updatemsg']!="")
+{?>
+<div class="col-md-6">
+<div class="alert alert-success" >
+<strong>OK: </strong> 
+<?php echo htmlentities($_SESSION['updatemsg']);?>
+<?php echo htmlentities($_SESSION['updatemsg']="");?>
+</div>
+</div>
+<?php } ?>
+<?php if($_SESSION['delmsg']!="")
+{?>
+<div class="col-md-6">
+<div class="alert alert-success" >
+<strong>OK: </strong> 
+<?php echo htmlentities($_SESSION['delmsg']);?>
+<?php echo htmlentities($_SESSION['delmsg']="");?>
+</div>
+</div>
+<?php } ?>
+</div>
+
             <div class="row">
                 <div class="col-md-12">
                     <!-- Advanced Tables -->

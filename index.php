@@ -2,42 +2,29 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
-
-if($_SESSION['login']!=''){
-	$_SESSION['login']='';
+if($_SESSION['alogin']!=''){
+$_SESSION['alogin']='';
 }
-
 if(isset($_POST['login']))
 {
-	//code for captach verification
+ //code for captach verification
 	//if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
-	//		echo "<script>alert('Codice di verifica errato');</script>" ;
-	//} else {
-		$email=$_POST['emailid'];
+    //    echo "<script>alert('Codice di verifica non corretto');</script>" ;
+    //} else {
+		$username=$_POST['username'];
 		$password=md5($_POST['password']);
-		$sql ="SELECT EmailId,Password,StudentId,Status FROM lms_tblstudents WHERE EmailId=:email and Password=:password";
+		$sql ="SELECT UserName,Password FROM lms_admin WHERE UserName=:username and Password=:password";
 		$query= $dbh -> prepare($sql);
-		$query-> bindParam(':email', $email, PDO::PARAM_STR);
+		$query-> bindParam(':username', $username, PDO::PARAM_STR);
 		$query-> bindParam(':password', $password, PDO::PARAM_STR);
 		$query-> execute();
 		$results=$query->fetchAll(PDO::FETCH_OBJ);
-
 		if($query->rowCount() > 0)
 		{
-			 foreach ($results as $result) {
-			 $_SESSION['stdid']=$result->StudentId;
-			if($result->Status==1)
-			{
-			$_SESSION['login']=$_POST['emailid'];
-			echo "<script type='text/javascript'> document.location ='dashboard.php'; </script>";
-			} else {
-			echo "<script>alert('Il tuo account è stato bloccato. Contatta l'amministratore.');</script>";
-
-			}
-			}
-		} 
-		else{
-			echo "<script>alert('Dati non corretti');</script>";
+		$_SESSION['alogin']=$_POST['username'];
+		echo "<script type='text/javascript'> document.location ='admin/dashboard.php'; </script>";
+		} else{
+		echo "<script>alert('Dati non corretti');</script>";
 		}
 	//}
 }
@@ -49,7 +36,7 @@ if(isset($_POST['login']))
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Online Library Management System | Accesso Studente</title>
+    <title>Online Library Management System</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -68,7 +55,7 @@ if(isset($_POST['login']))
 <div class="container">
 <div class="row pad-botm">
 <div class="col-md-12">
-<h4 class="header-line">ACCESSO STUDENTE</h4>
+<h4 class="header-line">ACCESSO AMMINISTRATORE</h4>
 </div>
 </div>
              
@@ -77,28 +64,25 @@ if(isset($_POST['login']))
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
 <div class="panel panel-info">
 <div class="panel-heading">
-Inserire le credenziali dello Studente
+Inserire le credenziali dell'Amministratore
 </div>
 <div class="panel-body">
 <form role="form" method="post">
 
 <div class="form-group">
-<label>E-mail</label>
-<input class="form-control" type="text" name="emailid" required autocomplete="off" />
+<label>Username</label>
+<input class="form-control" type="text" name="username" autocomplete="off" required />
 </div>
 <div class="form-group">
 <label>Password</label>
-<input class="form-control" type="password" name="password" required autocomplete="off"  />
-<p class="help-block"><a href="user-forgot-password.php">Password Dimenticata?</a> | <a href="signup.php">Non sei ancora registrato?</a></p>
+<input class="form-control" type="password" name="password" autocomplete="off" required />
 </div>
-
 <!--
  <div class="form-group">
-<label>Codice di Verifica: </label>
-<input type="text" class="form-control1"  name="vercode" maxlength="5" autocomplete="off" required  style="height:25px;" />&nbsp;<img src="captcha.php">
-</div>
+<label>Codice di verifica</label>
+<input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
+</div>  
 -->
-
  <button type="submit" name="login" class="btn btn-info">ACCEDI</button>
 </form>
  </div>
@@ -118,6 +102,6 @@ Inserire le credenziali dello Studente
     <script src="assets/js/bootstrap.js"></script>
       <!-- CUSTOM SCRIPTS  -->
     <script src="assets/js/custom.js"></script>
-
+</script>
 </body>
 </html>

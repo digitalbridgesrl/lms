@@ -59,9 +59,8 @@
                     <div class="navbar-collapse collapse ">
                         <ul id="menu-top" class="nav navbar-nav navbar-right">                        
                           
-  <li><a href="adminlogin.php">Accesso Amministratore</a></li>
-                             <li><a href="index.php">Accesso Studente</a></li>
-                             <li><a href="signup.php">Registrazione Studente</a></li>
+  <li><a href="index.php">Accesso Amministratore</a></li>
+  <li><a href="student-index.php">Accesso Studente</a></li>
                           
 
                         </ul>
