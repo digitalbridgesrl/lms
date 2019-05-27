@@ -118,8 +118,10 @@ Cambio Password Amministratore
 <label>Conferma Password</label>
 <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
 </div>
-
- <button type="submit" name="change" class="btn btn-info">CAMBIA</button> 
+<div align="center">
+<button type="submit" name="change" class="btn btn-info">CAMBIA</button>
+<a href="dashboard.php" class="btn btn-warning">ANNULLA</a>
+</div>
 </form>
  </div>
 </div>
