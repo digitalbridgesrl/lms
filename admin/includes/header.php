@@ -6,7 +6,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand">
+                <a class="navbar-brand" href="dashboard.php">
 
                     <img src="assets/img/logo.png" />
                 </a>
