@@ -126,13 +126,13 @@ if(isset($_POST['signup']))
 
                     <div class="form-group">
                         <label>Email</label>
-                        <input class="form-control" type="email" name="email" id="emailid" onBlur="checkAvailability()"  autocomplete="off" required  />
+                        <input class="form-control" type="email" name="email" id="emailid" onBlur="checkAvailability()" autocomplete="off" required  />
                         <span id="user-availability-status" style="font-size:12px;"></span> 
                     </div>
 
                     <div class="form-group">
                         <label>Password</label>
-                        <input class="form-control" type="password" name="password" autocomplete="off" required  />
+                        <input class="form-control" type="password" name="password" autocomplete="new-password" required  />
                     </div>
 
                     <div class="form-group">

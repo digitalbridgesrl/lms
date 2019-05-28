@@ -37,6 +37,22 @@ header('location:manage-students.php');
 }
 
 
+if(isset($_GET['del']))
+{
+$id=$_GET['del'];
+$sql = "DELETE from lms_tblstudents  WHERE id=:id";
+$query = $dbh->prepare($sql);
+$query -> bindParam(':id',$id, PDO::PARAM_STR);
+$errquery = $query -> execute();
+
+if($errquery == true){
+    $_SESSION['delmsg']="Studente eliminato correttamente.";
+}else{
+    $_SESSION['error']="Impossibile eliminare lo studente.";
+}
+}
+
+
     ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -157,19 +173,12 @@ foreach($results as $result)
                                             {
                                                 echo htmlentities("Attivo");
                                             } else {
-
-
-                                            echo htmlentities("Bloccato");
-}
-                                            ?></td>
-                                            <td class="center">
-<?php if($result->Status==1)
- {?>
-<a href="manage-students.php?inid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sei sicuro di voler bloccare questo studente?');"" >  <button class="btn btn-danger">BLOCCA</button>
-<?php } else {?>
-
-                                            <a href="manage-students.php?id=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sei sicuro di voler attivare questo studente?');""><button class="btn btn-primary">ATTIVA</button>
-                                            <?php } ?>
+                                                echo htmlentities("Bloccato");
+                                            }?>                                    
+                                            </td>
+                                        <td class="center">
+                                        <a href="edit-student.php?id=<?php echo htmlentities($result->id);?>"><button class="btn btn-primary"><i class="fa fa-edit "></i>MODIFICA</button>
+                                        <a href="manage-students.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sei sicuro di voler cancellare questo studente?');"" >  <button class="btn btn-danger"><i class="fa fa-pencil"></i>CANCELLA</button>
                                           
                                             </td>
                                         </tr>
