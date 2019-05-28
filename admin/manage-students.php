@@ -18,7 +18,7 @@ $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query -> execute();
-header('location:reg-students.php');
+header('location:manage-students.php');
 }
 
 
@@ -33,7 +33,7 @@ $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query -> execute();
-header('location:reg-students.php');
+header('location:manage-students.php');
 }
 
 
@@ -165,10 +165,10 @@ foreach($results as $result)
                                             <td class="center">
 <?php if($result->Status==1)
  {?>
-<a href="reg-students.php?inid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sei sicuro di voler bloccare questo studente?');"" >  <button class="btn btn-danger">BLOCCA</button>
+<a href="manage-students.php?inid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sei sicuro di voler bloccare questo studente?');"" >  <button class="btn btn-danger">BLOCCA</button>
 <?php } else {?>
 
-                                            <a href="reg-students.php?id=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sei sicuro di voler attivare questo studente?');""><button class="btn btn-primary">ATTIVA</button>
+                                            <a href="manage-students.php?id=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sei sicuro di voler attivare questo studente?');""><button class="btn btn-primary">ATTIVA</button>
                                             <?php } ?>
                                           
                                             </td>
