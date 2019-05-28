@@ -14,17 +14,19 @@ $bookname=$_POST['bookname'];
 $booksubtitle=$_POST['booksubtitle'];
 $volume=$_POST['volume'];
 $totvolume=$_POST['totvolume'];
+$shelf=$_POST['shelf'];
 $category=$_POST['category'];
 $author=$_POST['author'];
 $publisher=$_POST['publisher'];
 $isbn=$_POST['isbn'];
 $inventory=$_POST['inventory'];
-$sql="INSERT INTO  lms_tblbooks(BookName,BookSubtitle,Volume,TotVolume,CatId,AuthorId,PublisherId,ISBNNumber,InventoryNumber) VALUES(:bookname,:booksubtitle,:volume,:totvolume,:category,:author,:publisher,:isbn,:inventory)";
+$sql="INSERT INTO  lms_tblbooks(BookName,BookSubtitle,Volume,TotVolume,ShelfId,CatId,AuthorId,PublisherId,ISBNNumber,InventoryNumber) VALUES(:bookname,:booksubtitle,:volume,:totvolume,:shelf,:category,:author,:publisher,:isbn,:inventory)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':bookname',$bookname,PDO::PARAM_STR);
 $query->bindParam(':booksubtitle',$booksubtitle,PDO::PARAM_STR);
 $query->bindParam(':volume',$volume,PDO::PARAM_STR);
 $query->bindParam(':totvolume',$totvolume,PDO::PARAM_STR);
+$query->bindParam(':shelf',$shelf,PDO::PARAM_STR);
 $query->bindParam(':category',$category,PDO::PARAM_STR);
 $query->bindParam(':author',$author,PDO::PARAM_STR);
 $query->bindParam(':publisher',$publisher,PDO::PARAM_STR);
@@ -128,9 +130,33 @@ Informazioni sul Libro
 </td>
 </tr>
 
-<tr>
-    <td colspan="2">
 
+<tr>
+<td colspan="2">
+<div class="form-group">
+<label>Scaffale: <span style="color:red;">*</span></label>
+<select class="form-control" name="shelf" required="required">
+<option value="">Seleziona Scaffale</option>
+<?php 
+$sql = "SELECT * from  lms_tblshelf";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
+<option value="<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->ShelfName);?></option>
+ <?php }} ?> 
+</select>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<td colspan="2">
 <div class="form-group">
 <label>Categoria: <span style="color:red;">*</span></label>
 <select class="form-control" name="category" required="required">
@@ -151,8 +177,8 @@ foreach($results as $result)
  <?php }} ?> 
 </select>
 </div>
-
 </td>
+</tr>
 
 <tr>
     <td>

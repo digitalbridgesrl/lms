@@ -118,6 +118,7 @@ if($errquery == true){
                                             <th>Sottotitolo</th>
                                             <th>Volume</th>
                                             <th>Volumi</th>
+                                            <th>Scaffale</th>
                                             <th>Categoria</th>
                                             <th>Autore</th>
                                             <th>Editore</th>
@@ -126,7 +127,7 @@ if($errquery == true){
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php $sql = "SELECT lms_tblbooks.BookName,lms_tblbooks.BookSubtitle,lms_tblbooks.Volume,lms_tblbooks.TotVolume,lms_tblcategory.CategoryName,lms_tblauthors.AuthorName,lms_tblpublishers.PublisherName,lms_tblbooks.InventoryNumber,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId left join lms_tblpublishers on lms_tblpublishers.id=lms_tblbooks.PublisherId";
+<?php $sql = "SELECT lms_tblbooks.BookName,lms_tblbooks.BookSubtitle,lms_tblbooks.Volume,lms_tblbooks.TotVolume,lms_tblshelf.ShelfName,lms_tblcategory.CategoryName,lms_tblauthors.AuthorName,lms_tblpublishers.PublisherName,lms_tblbooks.InventoryNumber,lms_tblbooks.id as bookid from  lms_tblbooks left join lms_tblshelf on lms_tblshelf.id=lms_tblbooks.ShelfId left join lms_tblcategory on lms_tblcategory.id=lms_tblbooks.CatId left join lms_tblauthors on lms_tblauthors.id=lms_tblbooks.AuthorId left join lms_tblpublishers on lms_tblpublishers.id=lms_tblbooks.PublisherId";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -141,6 +142,7 @@ foreach($results as $result)
                                             <td class="center"><?php echo htmlentities($result->BookSubtitle);?></td>
                                             <td class="center"><?php echo htmlentities($result->Volume);?></td>
                                             <td class="center"><?php echo htmlentities($result->TotVolume);?></td>
+                                            <td class="center"><?php echo htmlentities($result->ShelfName);?></td>
                                             <td class="center"><?php echo htmlentities($result->CategoryName);?></td>
                                             <td class="center"><?php echo htmlentities($result->AuthorName);?></td>
                                             <td class="center"><?php echo htmlentities($result->PublisherName);?></td>

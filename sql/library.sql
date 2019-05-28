@@ -82,6 +82,18 @@ CREATE TABLE `lms_tblpublishers` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
+--
+-- Table structure for table `lms_tblshelf`
+--
+
+CREATE TABLE `lms_tblshelf` (
+  `id` int(11) NOT NULL,
+  `ShelfName` varchar(150) NOT NULL,
+  `CreationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `ShelfName_UNIQUE` (`ShelfName`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 --
 -- Table structure for table `lms_tblcategory`
@@ -120,6 +132,7 @@ CREATE TABLE `lms_tblbooks` (
   `BookSubtitle` varchar(255) DEFAULT NULL,
   `Volume` varchar(255) DEFAULT NULL,
   `TotVolume` varchar(255) DEFAULT NULL,
+  `ShelfId` int(11) DEFAULT NULL,
   `CatId` int(11) DEFAULT NULL,
   `AuthorId` int(11) DEFAULT NULL,
   `PublisherId` int(11) DEFAULT NULL,
@@ -129,9 +142,11 @@ CREATE TABLE `lms_tblbooks` (
   `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   UNIQUE KEY `ISBNNumber_UNIQUE` (`ISBNNumber`),
   UNIQUE KEY `InventoryNumber_UNIQUE` (`InventoryNumber`),
+  KEY `fk_lms_tblbooks_shelf_id_idx` (`ShelfId`),
   KEY `fk_lms_tblbooks_category_id_idx` (`CatId`),
   KEY `fk_lms_tblbooks_author_id_idx` (`AuthorId`),
   KEY `fk_lms_tblbooks_publisher_id_idx` (`PublisherId`),
+  CONSTRAINT `fk_lms_tblbooks_shelf_id` FOREIGN KEY (`ShelfId`) REFERENCES `lms_tblshelf` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_lms_tblbooks_category_id` FOREIGN KEY (`CatId`) REFERENCES `lms_tblcategory` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_lms_tblbooks_author_id` FOREIGN KEY (`AuthorId`) REFERENCES `lms_tblauthors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_lms_tblbooks_publisher_id` FOREIGN KEY (`PublisherId`) REFERENCES `lms_tblpublishers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -214,6 +229,12 @@ ALTER TABLE `lms_tblbooks`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `lms_tblshelf`
+--
+ALTER TABLE `lms_tblshelf`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `lms_tblcategory`
 --
 ALTER TABLE `lms_tblcategory`
@@ -252,6 +273,12 @@ ALTER TABLE `lms_tblauthors`
 -- AUTO_INCREMENT for table `lms_tblbooks`
 --
 ALTER TABLE `lms_tblbooks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `lms_tblshelf`
+--
+ALTER TABLE `lms_tblshelf`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
