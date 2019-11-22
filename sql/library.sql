@@ -27,13 +27,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `lms_admin` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `FullName` varchar(100) DEFAULT NULL,
   `AdminEmail` varchar(120) DEFAULT NULL,
   `UserName` varchar(100) NOT NULL,
   `Password` varchar(100) NOT NULL,
   `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lms_admin`
@@ -49,11 +49,11 @@ INSERT INTO `lms_admin` (`id`, `FullName`, `AdminEmail`, `UserName`, `Password`,
 --
 
 CREATE TABLE `lms_tblauthors` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `AuthorName` varchar(159) DEFAULT NULL,
   `creationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lms_tblauthors`
@@ -73,13 +73,13 @@ INSERT INTO `lms_tblauthors` (`id`, `AuthorName`, `creationDate`, `UpdationDate`
 --
 
 CREATE TABLE `lms_tblpublishers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `PublisherName` varchar(150) NOT NULL,
   `CreationDate` timestamp NULL DEFAULT current_timestamp(),
   `UpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `PublisherName_UNIQUE` (`PublisherName`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 
 --
@@ -87,12 +87,12 @@ CREATE TABLE `lms_tblpublishers` (
 --
 
 CREATE TABLE `lms_tblshelf` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `ShelfName` varchar(150) NOT NULL,
   `CreationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   UNIQUE KEY `ShelfName_UNIQUE` (`ShelfName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 
 --
@@ -100,13 +100,13 @@ CREATE TABLE `lms_tblshelf` (
 --
 
 CREATE TABLE `lms_tblcategory` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `CategoryName` varchar(150) NOT NULL,
   `Status` int(1) DEFAULT NULL,
   `CreationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   UNIQUE KEY `CategoryName_UNIQUE` (`CategoryName`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 
 --
@@ -127,7 +127,7 @@ INSERT INTO `lms_tblcategory` (`id`, `CategoryName`, `Status`, `CreationDate`, `
 --
 
 CREATE TABLE `lms_tblbooks` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `BookName` varchar(255) DEFAULT NULL,
   `BookSubtitle` varchar(255) DEFAULT NULL,
   `Volume` varchar(255) DEFAULT NULL,
@@ -150,7 +150,7 @@ CREATE TABLE `lms_tblbooks` (
   CONSTRAINT `fk_lms_tblbooks_category_id` FOREIGN KEY (`CatId`) REFERENCES `lms_tblcategory` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_lms_tblbooks_author_id` FOREIGN KEY (`AuthorId`) REFERENCES `lms_tblauthors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_lms_tblbooks_publisher_id` FOREIGN KEY (`PublisherId`) REFERENCES `lms_tblpublishers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lms_tblbooks`
@@ -168,13 +168,13 @@ INSERT INTO `lms_tblbooks` (`id`, `BookName`, `CatId`, `AuthorId`, `ISBNNumber`,
 --
 
 CREATE TABLE `lms_tblissuedbookdetails` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `BookId` int(11) DEFAULT NULL,
   `StudentID` varchar(150) DEFAULT NULL,
   `IssuesDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ReturnDate` timestamp NULL DEFAULT NULL,
-  `ReturnStatus` int(1) DEFAULT 0,
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ReturnStatus` int(1) DEFAULT 0
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lms_tblissuedbookdetails`
@@ -195,8 +195,8 @@ INSERT INTO `lms_tblissuedbookdetails` (`id`, `BookId`, `StudentID`, `IssuesDate
 --
 
 CREATE TABLE `lms_tblstudents` (
-  `id` int(11) NOT NULL,
-  `StudentId` varchar(100) DEFAULT NULL,
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
+  `StudentId` varchar(100) DEFAULT NULL UNIQUE,
   `FullName` varchar(120) DEFAULT NULL,
   `EmailId` varchar(120) DEFAULT NULL,
   `MobileNumber` char(11) DEFAULT NULL,
@@ -204,100 +204,9 @@ CREATE TABLE `lms_tblstudents` (
   `Status` int(1) DEFAULT NULL,
   `RegDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `lms_admin`
---
-ALTER TABLE `lms_admin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `lms_tblauthors`
---
-ALTER TABLE `lms_tblauthors`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `lms_tblbooks`
---
-ALTER TABLE `lms_tblbooks`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `lms_tblshelf`
---
-ALTER TABLE `lms_tblshelf`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `lms_tblcategory`
---
-ALTER TABLE `lms_tblcategory`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `lms_tblissuedbookdetails`
---
-ALTER TABLE `lms_tblissuedbookdetails`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `lms_tblstudents`
---
-ALTER TABLE `lms_tblstudents`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `StudentId` (`StudentId`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `lms_admin`
---
-ALTER TABLE `lms_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `lms_tblauthors`
---
-ALTER TABLE `lms_tblauthors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `lms_tblbooks`
---
-ALTER TABLE `lms_tblbooks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `lms_tblshelf`
---
-ALTER TABLE `lms_tblshelf`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `lms_tblcategory`
---
-ALTER TABLE `lms_tblcategory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `lms_tblissuedbookdetails`
---
-ALTER TABLE `lms_tblissuedbookdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `lms_tblstudents`
---
-ALTER TABLE `lms_tblstudents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 COMMIT;
 
