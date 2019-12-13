@@ -20,7 +20,12 @@ SET time_zone = "+00:00";
 -- Database: `library`
 --
 
--- --------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS `library`;
+USE `library`;
+
+CREATE USER IF NOT EXISTS 'librarian'@'localhost' IDENTIFIED BY '8_2374y()5h23f87h';
+GRANT ALL PRIVILEGES ON library.* TO 'librarian'@'localhost';
+
 
 --
 -- Table structure for table `lms_admin`
@@ -42,7 +47,6 @@ CREATE TABLE `lms_admin` (
 INSERT INTO `lms_admin` (`id`, `FullName`, `AdminEmail`, `UserName`, `Password`, `updationDate`) VALUES
 (1, 'admin', 'info@digitalbridge.srl', 'admin', '4cf34194f97afa90c0626574e99bfec7', '2017-07-16 18:11:42');
 
--- --------------------------------------------------------
 
 --
 -- Table structure for table `lms_tblauthors`
@@ -55,18 +59,6 @@ CREATE TABLE `lms_tblauthors` (
   `UpdationDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `lms_tblauthors`
---
-
-INSERT INTO `lms_tblauthors` (`id`, `AuthorName`, `creationDate`, `UpdationDate`) VALUES
-(1, 'Anuj kumar', '2017-07-08 12:49:09', '2017-07-08 15:16:59'),
-(2, 'Chetan Bhagatt', '2017-07-08 14:30:23', '2017-07-08 15:15:09'),
-(3, 'Anita Desai', '2017-07-08 14:35:08', NULL),
-(4, 'HC Verma', '2017-07-08 14:35:21', NULL),
-(5, 'R.D. Sharma ', '2017-07-08 14:35:36', NULL);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `lms_tblpublishers`
@@ -77,7 +69,6 @@ CREATE TABLE `lms_tblpublishers` (
   `PublisherName` varchar(150) NOT NULL,
   `CreationDate` timestamp NULL DEFAULT current_timestamp(),
   `UpdationDate` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`),
   UNIQUE KEY `PublisherName_UNIQUE` (`PublisherName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
@@ -110,19 +101,6 @@ CREATE TABLE `lms_tblcategory` (
 
 
 --
--- Dumping data for table `lms_tblcategory`
---
-
-INSERT INTO `lms_tblcategory` (`id`, `CategoryName`, `Status`, `CreationDate`, `UpdationDate`) VALUES
-(4, 'Romantic', 1, '2017-07-04 18:35:25', '2017-07-06 16:00:42'),
-(5, 'Technology', 1, '2017-07-04 18:35:39', '2017-07-08 17:13:03'),
-(6, 'Science', 1, '2017-07-04 18:35:55', '0000-00-00 00:00:00'),
-(7, 'Management', 0, '2017-07-04 18:36:16', '0000-00-00 00:00:00');
-
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `lms_tblbooks`
 --
 
@@ -152,16 +130,6 @@ CREATE TABLE `lms_tblbooks` (
   CONSTRAINT `fk_lms_tblbooks_publisher_id` FOREIGN KEY (`PublisherId`) REFERENCES `lms_tblpublishers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `lms_tblbooks`
---
-
-INSERT INTO `lms_tblbooks` (`id`, `BookName`, `CatId`, `AuthorId`, `ISBNNumber`, `RegDate`, `UpdationDate`) VALUES
-(1, 'PHP And MySql programming', 5, 1, 222333, '2017-07-08 20:04:55', '2017-07-15 05:54:41'),
-(3, 'physics', 6, 4, 1111, '2017-07-08 20:17:31', '2017-07-15 06:13:17');
-
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `lms_tblissuedbookdetails`
@@ -176,19 +144,6 @@ CREATE TABLE `lms_tblissuedbookdetails` (
   `ReturnStatus` int(1) DEFAULT 0
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `lms_tblissuedbookdetails`
---
-
-INSERT INTO `lms_tblissuedbookdetails` (`id`, `BookId`, `StudentID`, `IssuesDate`, `ReturnDate`, `ReturnStatus`) VALUES
-(1, 1, 'SID002', '2017-07-15 06:09:47', '2017-07-15 11:15:20', 1),
-(2, 1, 'SID002', '2017-07-15 06:12:27', '2017-07-15 11:15:23', 1),
-(3, 3, 'SID002', '2017-07-15 06:13:40', NULL, 0),
-(4, 3, 'SID002', '2017-07-15 06:23:23', '2017-07-15 11:22:29', 1),
-(5, 1, 'SID009', '2017-07-15 10:59:26', NULL, 0),
-(6, 3, 'SID011', '2017-07-15 18:02:55', NULL, 0);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `lms_tblstudents`
